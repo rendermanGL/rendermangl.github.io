@@ -409,12 +409,12 @@
     box.addEventListener("mouseenter", () => {
         const key = box.getAttribute("data-key");
         detailsElement.innerHTML = experienceDetails[key];
-        console.log(key);
         detailsElement.classList.remove("opacity-0");
         detailsElement.classList.add("opacity-100");
     });
 
     box.addEventListener("mouseleave", () => {
+        detailsElement.innerHTML = experienceDetails[key];
         detailsElement.classList.remove("opacity-100");
         detailsElement.classList.add("opacity-0");
     });
