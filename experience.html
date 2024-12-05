@@ -207,7 +207,7 @@
             <div class="w-full flex-1">
                 <p
                     id="experience-details"
-                    class="text-gray-700 text-lg opacity-0 transition-opacity duration-500"
+                    class="text-gray-700 text-lg opacity-1 transition-opacity duration-500"
                     style="min-height: 6rem;"
                 >
                     Hover over each experience on the timeline to see details here.
@@ -414,9 +414,8 @@
     });
 
     box.addEventListener("mouseleave", () => {
-        detailsElement.innerHTML = experienceDetails[key];
         detailsElement.classList.remove("opacity-100");
-        detailsElement.classList.add("opacity-0");
+        detailsElement.classList.add("opacity-1");
     });
     });
 
