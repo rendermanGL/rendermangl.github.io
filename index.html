@@ -172,7 +172,7 @@
             alt="Digital Strategy Icon"
             class="mx-auto w-[120px] h-auto"
           />
-          <h5 class="mt-6 text-lg font-bold text-[#DCD7D2]">Strategy Marketing</h5>
+          <h5 class="mt-6 text-lg font-bold text-[#DCD7D2]">Strategic Marketing</h5>
           <p class="mt-4 text-sm font-light text-[#DCD7D2]">
               Holistic solutions that blend customer insights, competitive analysis, and innovative strategies to position brands for long-term growth. Build meaningful connections and achieve sustainable impact.
           </p>
@@ -531,7 +531,7 @@
             <!-- Brand 17 -->
             <div class="flex flex-col items-center flex-shrink-0">
               <div class="w-[100px] h-[100px] bg-gray-700 rounded-full">
-                <img src="/img/brands/fitze.jpg" alt="fitze" class="w-full h-full rounded-full">
+                <img src="/img/brands/fitze.jpg" alt="fitze" class="w-full h-full object-cover rounded-full">
               </div>
             </div>
 
@@ -670,7 +670,7 @@
           </div>
           <!-- LinkedIn -->
           <div>
-              <a href="www.linkedin.com/in/airinjohn" target="_blank" class="text-white underline italic hover:text-accentAj transition">
+              <a href="https://www.linkedin.com/in/airinjohn" target="_blank" class="text-white underline italic hover:text-accentAj transition">
                   LinkedIn
               </a>
           </div>
@@ -758,8 +758,8 @@
 
     // Show Recommendations on Hover
     recommendationsTrigger.addEventListener("mouseover", () => {
-      placeholder.style.opacity= "0"
       recommendationsSection.classList.remove("opacity-0"); // Show recommendations
+      placeholder.classList.add("opacity-0");
       showNextRecommendation(); // Show the first recommendation
       interval = setInterval(() => {
         showNextRecommendation();
@@ -769,7 +769,7 @@
     // Hide Recommendations on Mouse Out
     recommendationsTrigger.addEventListener("mouseout", () => {
       recommendationsSection.classList.add("opacity-0"); // Hide recommendations
-      placeholder.style.opacity= "1"
+      placeholder.classList.add("opacity-1");
       clearInterval(interval); // Stop cycling recommendations
       progressBar.style.width = "0%"; // Reset progress bar
     });
@@ -777,13 +777,13 @@
   
     // Show Featured Projects on Hover
     featuredProjectsTrigger.addEventListener("mouseover", () => {
-      placeholder.style.opacity = "0"
+      placeholder.classList.add("opacity-0");
       featuredProjectsSection.classList.remove("opacity-0"); // Show featured projects
     });
 
     // Hide Featured Projects on Mouse Out
     featuredProjectsTrigger.addEventListener("mouseout", () => {
-      placeholder.style.opacity = "1"
+      placeholder.classList.add("opacity-1");
       featuredProjectsSection.classList.add("opacity-0"); // Hide featured projects
     });
 
