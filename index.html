@@ -390,15 +390,17 @@
           </li>
           <li>
             <a href="/projects.html" 
-            id="featured-projects-trigger"
-            class="text-5xl font-anton text-gray-200 hover:text-gray-400 transition">
+            class="text-5xl font-anton text-gray-200 hover:text-gray-400 transition"
+            onmouseover="fadeInFeaturedProjects()"
+            onmouseout="fadeOutFeaturedProjects()">
               FEATURED PROJECTS
             </a>
           </li>
           <li>
             <a href="/contentWriting.html" 
-              id="content-writing-trigger"
-              class="text-5xl font-anton text-gray-200 hover:text-gray-400 transition">
+              class="text-5xl font-anton text-gray-200 hover:text-gray-400 transition"
+              onmouseover="fadeInContentWritingSamples()"
+              onmouseout="fadeOutContentWritingSamples()">
               CONTENT WRITING SAMPLES
             </a>
           </li>
@@ -671,64 +673,108 @@
 
 
   <script>
-    let timeout;
+
+  let timeout;
+  let recommendationIndex = 0;
+  let interval;
+  const timeline = document.getElementById("timeline");
+  const featuredProjects = document.getElementById("featured-projects");
+  const contentWritingSamples = document.getElementById("content-writing-samples");
+  const recommendationsElement = document.getElementById("recommendations")
+  const placeholderText = document.getElementById("placeholder-text");
+  const recommendationsTrigger = document.getElementById("recommendations-trigger");
+  const recommendationsSection = document.getElementById("recommendations");
+  const recommendationContent = document.getElementById("recommendation-content");
+  const progressBar = document.getElementById("progress-bar");
+
+    
+
+
+  // Recommendations Data
+  const recommendations = [
+    {
+      text: "Airin and I worked together at Kitopi for more than a year, and I was really impressed by her marketing knowledge, creativity and ownership! In all the projects that she led, she always aimed for perfection in every detail and went above and beyond to make things happen on time successfully. Her ability to track and report the success metrics were also very helpful to help grow the business. Airin is a big team player and very caring person which adds a lot to a team’s dynamics.",
+      author: "- Fabienne Naggear",
+      position: "Senior Brand Mananger | Kitopi"
+    },
+    {
+      text: "Working with Airin over the last few months has been great. Her passion for the role and her constant effort to elevate the work at hand has been inspiring. Airin never let any roadblocks get in her way, instead always had a pro-active problem solving approach to any task to ensure it was completed. I’m positive you’ll do amazing wherever you go next Airin!",
+      author: "- Tania Bilani",
+      position: "Global Marketing Director | Kitopi"
+    },
+    {
+      text: "Airin consistently took full ownership of her marketing projects on big brands such as Chinchin and Kava & Chai, from conception to execution. She has an innate ability to see the bigger picture while ensuring every detail is meticulously managed. Her creativity shines through in every campaign she leads, always finding innovative ways to engage our target audience and elevate our brand. Her ability to think outside the box has resulted in numerous successful campaigns that have significantly contributed to our company's growth.",
+      author: "- Imad El Fay",
+      position: "VP, Growth | Kitopi"
+    },
+    {
+      text: "HAirin is an outstanding marketing leader. Her vast marketing portfolio skills and experience is a game changer to the organization, as she always brings a fresh and creative approach. Her innovative and creative approach, particularly in the areas of social media management, influencer management & marketing, as well as events management and PR, has taken Wild & The Moon UAE to the next level. Her attention to detail is extremely valuable in all aspects of her work, internally within the organization, but also with partners, clients, and other stakeholders. She focuses on delivering customer and service excellence through detailed out-of-the-box strategic thinking. Inspiring, hardworking, risk taker, enthusiastic personality, and always a real team player. It is a pleasure to work with Airin, on a daily basis.",
+      author: "- Lucile Jan Robin",
+      position: "Marketing & Communications Director | Wild & The Moon"
+    },
+  ];
 
     function fadeInTimeline() {
       clearTimeout(timeout);
-      document.getElementById("placeholder-text").classList.add("hidden");
-      const timeline = document.getElementById("timeline");
+      placeholderText.classList.add("hidden");
       timeline.classList.remove("opacity-0");
       timeline.classList.add("opacity-100");
     }
 
     function fadeOutTimeline() {
       timeout = setTimeout(() => {
-        const timeline = document.getElementById("timeline");
         timeline.classList.remove("opacity-100");
         timeline.classList.add("opacity-0");
-        document.getElementById("placeholder-text").classList.remove("hidden");
+        placeholderText.classList.remove("hidden");
       }, 300); // Delay for fade out
     }
 
-    // Recommendations Data
-    const recommendations = [
-      {
-        text: "Airin and I worked together at Kitopi for more than a year, and I was really impressed by her marketing knowledge, creativity and ownership! In all the projects that she led, she always aimed for perfection in every detail and went above and beyond to make things happen on time successfully. Her ability to track and report the success metrics were also very helpful to help grow the business. Airin is a big team player and very caring person which adds a lot to a team’s dynamics.",
-        author: "- Fabienne Naggear",
-        position: "Senior Brand Mananger | Kitopi"
-      },
-      {
-        text: "Working with Airin over the last few months has been great. Her passion for the role and her constant effort to elevate the work at hand has been inspiring. Airin never let any roadblocks get in her way, instead always had a pro-active problem solving approach to any task to ensure it was completed. I’m positive you’ll do amazing wherever you go next Airin!",
-        author: "- Tania Bilani",
-        position: "Global Marketing Director | Kitopi"
-      },
-      {
-        text: "Airin consistently took full ownership of her marketing projects on big brands such as Chinchin and Kava & Chai, from conception to execution. She has an innate ability to see the bigger picture while ensuring every detail is meticulously managed. Her creativity shines through in every campaign she leads, always finding innovative ways to engage our target audience and elevate our brand. Her ability to think outside the box has resulted in numerous successful campaigns that have significantly contributed to our company's growth.",
-        author: "- Imad El Fay",
-        position: "VP, Growth | Kitopi"
-      },
-      {
-        text: "HAirin is an outstanding marketing leader. Her vast marketing portfolio skills and experience is a game changer to the organization, as she always brings a fresh and creative approach. Her innovative and creative approach, particularly in the areas of social media management, influencer management & marketing, as well as events management and PR, has taken Wild & The Moon UAE to the next level. Her attention to detail is extremely valuable in all aspects of her work, internally within the organization, but also with partners, clients, and other stakeholders. She focuses on delivering customer and service excellence through detailed out-of-the-box strategic thinking. Inspiring, hardworking, risk taker, enthusiastic personality, and always a real team player. It is a pleasure to work with Airin, on a daily basis.",
-        author: "- Lucile Jan Robin",
-        position: "Marketing & Communications Director | Wild & The Moon"
-      },
-    ];
 
-    const recommendationsTrigger = document.getElementById("recommendations-trigger");
-    const recommendationsSection = document.getElementById("recommendations");
-    const recommendationContent = document.getElementById("recommendation-content");
+    function fadeInFeaturedProjects(){
+      clearTimeout(timeout);
+      placeholderText.classList.add("hidden");
+      featuredProjects.classList.remove("opacity-0");
+      featuredProjects.classList.add("opacity-100");
+    }
 
-    const featuredProjectsTrigger = document.getElementById("featured-projects-trigger");
-    const featuredProjectsSection = document.getElementById("featured-projects");
+    function fadeOutFeaturedProjects(){
+      timeout = setTimeout(() => {
+        featuredProjects.classList.remove("opacity-100");
+        featuredProjects.classList.add("opacity-0");
+        placeholderText.classList.remove("hidden");
+      }, 300); // Delay for fade out
+    }
 
-    const contentTrigger = document.getElementById("content-writing-trigger");
-    const contentSamples = document.getElementById("content-writing-samples");
+    function fadeInContentWritingSamples(){
+      clearTimeout(timeout);
+      placeholderText.classList.add("hidden");
+      contentWritingSamples.classList.remove("opacity-0");
+      contentWritingSamples.classList.add("opacity-100");
+    }
+    
+    function fadeOutContentWritingSamples(){
+      timeout = setTimeout(() => {
+        contentWritingSamples.classList.remove("opacity-100");
+        contentWritingSamples.classList.add("opacity-0");
+        placeholderText.classList.remove("hidden");
+      }, 300); // Delay for fade out
+    }
 
-    const placeholder = document.getElementById("placeholder-text");
-    const progressBar = document.getElementById("progress-bar");
+    function fadeInRecommendations(){
+      clearTimeout(timeout);
+      placeholderText.classList.add("hidden");
+      recommendationsElement.classList.remove("opacity-0");
+      recommendationsElement.classList.add("opacity-100");
+    }
 
-    let recommendationIndex = 0;
-    let interval;
+    function fadeOutRecommendations(){
+      timeout = setTimeout(() => {
+        recommendationsElement.classList.remove("opacity-100");
+        recommendationsElement.classList.add("opacity-0");
+        placeholderText.classList.remove("hidden");
+      }, 300); // Delay for fade out
+    }
+
 
     // Function to display the next recommendation
     const showNextRecommendation = () => {
@@ -750,7 +796,7 @@
     // Show Recommendations on Hover
     recommendationsTrigger.addEventListener("mouseover", () => {
       recommendationsSection.classList.remove("opacity-0"); // Show recommendations
-      placeholder.classList.add("opacity-0");
+      placeholderText.classList.add("hidden");
       showNextRecommendation(); // Show the first recommendation
       interval = setInterval(() => {
         showNextRecommendation();
@@ -760,40 +806,10 @@
     // Hide Recommendations on Mouse Out
     recommendationsTrigger.addEventListener("mouseout", () => {
       recommendationsSection.classList.add("opacity-0"); // Hide recommendations
-      placeholder.classList.add("opacity-1");
+      placeholderText.classList.remove("hidden");
       clearInterval(interval); // Stop cycling recommendations
       progressBar.style.width = "0%"; // Reset progress bar
     });
-
-  
-    // Show Featured Projects on Hover
-    featuredProjectsTrigger.addEventListener("mouseover", () => {
-      placeholder.classList.add("opacity-0");
-      featuredProjectsSection.classList.remove("opacity-0"); // Show featured projects
-    });
-
-    // Hide Featured Projects on Mouse Out
-    featuredProjectsTrigger.addEventListener("mouseout", () => {
-      placeholder.classList.add("opacity-1");
-      featuredProjectsSection.classList.add("opacity-0"); // Hide featured projects
-    });
-
-    // Hover Trigger for Content Writing Samples
-    contentTrigger.addEventListener("mouseover", () => {
-      placeholder.style.opacity = "0";
-      contentSamples.style.opacity = "1";
-    });
-
-    contentTrigger.addEventListener("mouseout", () => {
-      setTimeout(() => {
-        placeholder.style.opacity = "1";
-        contentSamples.style.opacity = "0";
-      }, 300); // Delay before fade-out
-    });
-    
   </script>
-
-
-
 </body>
 </html>
