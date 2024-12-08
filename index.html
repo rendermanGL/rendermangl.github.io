@@ -382,8 +382,8 @@
             <a
               href="/experience.html"
               class="text-5xl font-anton text-gray-200 hover:text-gray-400 transition"
-              onmouseover="fadeInTimeline()"
-              onmouseout="fadeOutTimeline()"
+              onmouseenter="fadeInTimeline()"
+              onmouseleave="fadeOutTimeline()"
             >
               WORK EXPERIENCES
             </a>
@@ -391,16 +391,16 @@
           <li>
             <a href="/projects.html" 
             class="text-5xl font-anton text-gray-200 hover:text-gray-400 transition"
-            onmouseover="fadeInFeaturedProjects()"
-            onmouseout="fadeOutFeaturedProjects()">
+            onmouseenter="fadeInFeaturedProjects()"
+            onmouseleave="fadeOutFeaturedProjects()">
               FEATURED PROJECTS
             </a>
           </li>
           <li>
             <a href="/contentWriting.html" 
               class="text-5xl font-anton text-gray-200 hover:text-gray-400 transition"
-              onmouseover="fadeInContentWritingSamples()"
-              onmouseout="fadeOutContentWritingSamples()">
+              onmouseenter="fadeInContentWritingSamples()"
+              onmouseleave="fadeOutContentWritingSamples()">
               CONTENT WRITING SAMPLES
             </a>
           </li>
@@ -726,7 +726,7 @@
         timeline.classList.remove("opacity-100");
         timeline.classList.add("opacity-0");
         placeholderText.classList.remove("hidden");
-      }, 300); // Delay for fade out
+      }, 100); // Delay for fade out
     }
 
 
@@ -742,7 +742,7 @@
         featuredProjects.classList.remove("opacity-100");
         featuredProjects.classList.add("opacity-0");
         placeholderText.classList.remove("hidden");
-      }, 300); // Delay for fade out
+      }, 100); // Delay for fade out
     }
 
     function fadeInContentWritingSamples(){
@@ -757,7 +757,7 @@
         contentWritingSamples.classList.remove("opacity-100");
         contentWritingSamples.classList.add("opacity-0");
         placeholderText.classList.remove("hidden");
-      }, 300); // Delay for fade out
+      }, 100); // Delay for fade out
     }
 
     function fadeInRecommendations(){
