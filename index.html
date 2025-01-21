@@ -722,27 +722,23 @@
     }
 
     function fadeOutTimeline() {
-      timeout = setTimeout(() => {
         timeline.classList.remove("opacity-100");
         timeline.classList.add("opacity-0");
         placeholderText.classList.remove("hidden");
-      }, 100); // Delay for fade out
     }
 
 
     function fadeInFeaturedProjects(){
-      clearTimeout(timeout);
+      // clearTimeout(timeout);
       placeholderText.classList.add("hidden");
       featuredProjects.classList.remove("opacity-0");
       featuredProjects.classList.add("opacity-100");
     }
 
     function fadeOutFeaturedProjects(){
-      timeout = setTimeout(() => {
         featuredProjects.classList.remove("opacity-100");
         featuredProjects.classList.add("opacity-0");
         placeholderText.classList.remove("hidden");
-      }, 100); // Delay for fade out
     }
 
     function fadeInContentWritingSamples(){
@@ -753,11 +749,9 @@
     }
     
     function fadeOutContentWritingSamples(){
-      timeout = setTimeout(() => {
         contentWritingSamples.classList.remove("opacity-100");
         contentWritingSamples.classList.add("opacity-0");
         placeholderText.classList.remove("hidden");
-      }, 100); // Delay for fade out
     }
 
     function fadeInRecommendations(){
@@ -768,11 +762,9 @@
     }
 
     function fadeOutRecommendations(){
-      timeout = setTimeout(() => {
         recommendationsElement.classList.remove("opacity-100");
         recommendationsElement.classList.add("opacity-0");
         placeholderText.classList.remove("hidden");
-      }, 300); // Delay for fade out
     }
 
 
