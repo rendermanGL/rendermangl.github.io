@@ -44,7 +44,86 @@
       display: none; /* Chrome, Safari, Opera */
     }
 
-  
+    .timeline-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: auto;
+    }
+    .timeline-line {
+      position: absolute;
+      left: 50%;
+      width: 4px;
+      height: 100%;
+      background: gray;
+      transform: translateX(-50%);
+    }
+    .timeline-item {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      text-align: left;
+      width: 100%;
+      margin: 20px 0;
+      cursor: pointer;
+      position: relative;
+    }
+    .timeline-item:nth-child(odd){
+      flex-direction: row-reverse;
+      text-align: right;
+    }
+    .timeline-item:nth-child(even){
+      flex-direction: row;
+      text-align: left;
+    }
+    .timeline-item .year {
+      font-weight: bold;
+      font-size: 0.6rem;
+      /* color: #333; */
+      color: white;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      /* background: white; */
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+    .timeline-item .content {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      width: 300px;
+      transition: transform 0.3s ease-in-out;
+    }
+    @media (max-width: 768px) {
+      .timeline-line {
+        display: none;
+      }
+
+      .timeline-item:nth-child(odd){
+        flex-direction: column;
+        text-align: center;
+      }
+      .timeline-item:nth-child(even){
+        flex-direction: column;
+        text-align: center;
+      }
+      .timeline-item .content {
+        text-align: center;
+        width: 90%;
+      }
+      /* .timeline-line {
+        left: 5%;
+      } */
+      .timeline-item .year {
+        /* left: 10%; */
+        display: none;
+      }
+    }
+
   </style>
 </head>
 
@@ -222,64 +301,47 @@
         <!-- Timeline Container -->
         <div id="timeline" class="absolute inset-0 opacity-0 transition-opacity duration-500">
           <!-- Timeline Line -->
-          <div class="absolute left-1/2 transform -translate-x-1/2 bg-gray-400 w-1 h-full"></div>
-    
-          <!-- Years -->
-          <div class="absolute w-full h-full flex flex-col justify-between items-center text-gray-300">
-            <!-- <span>2024</span>
-            <span>2023</span>
-            <span>2022</span>
-            <span>2021</span>
-            <span>2020</span>
-            <span>2019</span>
-            <span>2017</span> -->
-          </div>
-    
-          <!-- Timeline Items -->
-          <!-- Kitopi LLC -->
-          <div class="absolute right-[55%] top-[1%] h-[16%] flex flex-col items-start">
-            <div class="bg-purple-600 rounded-lg p-4 w-80 h-full text-right">
-              <h3 class="font-bold text-lg">Brand Marketing Manager</h3>
-              <p class="text-sm">Kitopi LLC</p>
-              <p class="text-sm">2023 - Present</p>
+          <div class="timeline-line"></div>
+            <div class="timeline-item" data-key="kitopi">
+                <div class="bg-purple-600 rounded-lg p-4 w-80">
+                    <span class="year">2023 - Present</span>
+                    <h3 class="font-bold text-lg">Brand Marketing Manager</h3>
+                    <p class="text-sm">Kitopi LLC</p>
+                    <p class="text-sm">2023 - Present</p>
+                </div>
             </div>
-          </div>
-    
-          <!-- Wild & The Moon -->
-          <div class="absolute left-[55%] top-[16%] h-[18%] flex flex-col items-end">
-            <div class="bg-pink-500 rounded-lg p-4 w-80 h-full">
-              <h3 class="font-bold text-lg">Brand & Communications Manager</h3>
-              <p class="text-sm">Wild & The Moon</p>
-              <p class="text-sm">2020 - 2023</p>
+            <div class="timeline-item" data-key="wild">
+                <div class="bg-pink-500 rounded-lg p-4 w-80">
+                    <span class="year">2020 - 2023</span>
+                    <h3 class="font-bold text-lg">Brand & Communications Manager</h3>
+                    <p class="text-sm">Wild & The Moon</p>
+                    <p class="text-sm">2020 - 2023</p>
+                </div>
             </div>
-          </div>
-    
-          <!-- Letswork -->
-          <div class="absolute right-[55%] top-[33%] h-[10%] flex flex-col items-end">
-            <div class="bg-green-500 rounded-lg p-4 w-80 h-full text-right">
-              <h3 class="font-bold text-lg">Community Manager</h3>
-              <p class="text-sm">Letswork</p>
-              <p class="text-sm">2020</p>
+        <div class="timeline-item" data-key="letswork">
+            <div class="bg-green-500 rounded-lg p-4 w-80">
+                <span class="year">2020</span>
+                <h3 class="font-bold text-lg">Community Manager</h3>
+                <p class="text-sm">Letswork</p>
+                <p class="text-sm">2020</p>
+                </div>
+        </div>
+        <div class="timeline-item" data-key="tamimi">
+            <div class="bg-yellow-500 rounded-lg p-4 w-80">
+                <span class="year">2019 - 2020</span>
+                <h3 class="font-bold text-lg">Management Trainee</h3>
+                <p class="text-sm">Al Tamimi & Company</p>
+                <p class="text-sm">2019 - 2020</p>
             </div>
-          </div>
-    
-          <!-- Al Tamimi -->
-          <div class="absolute left-[55%] top-[65%] h-[17%] flex flex-col items-start">
-            <div class="bg-yellow-500 rounded-lg p-4 w-80 h-full">
-              <h3 class="font-bold text-lg">Management Trainee</h3>
-              <p class="text-sm">Al Tamimi & Company</p>
-              <p class="text-sm">2019 - 2020</p>
+        </div>
+        <div class="timeline-item" data-key="fitze">
+            <div class="bg-blue-500 rounded-lg p-4 w-80">
+                <span class="year">2017 - 2019</span>
+                <h3 class="font-bold text-lg">Events Intern</h3>
+                <p class="text-sm">Fitze</p>
+                <p class="text-sm">2017 - 2019</p>
             </div>
-          </div>
-    
-          <!-- Fitze -->
-          <div class="absolute right-[55%] top-[82%] h-[18%] flex flex-col items-end">
-            <div class="bg-blue-500 rounded-lg p-4 w-80 h-full text-right">
-              <h3 class="font-bold text-lg">Events Intern</h3>
-              <p class="text-sm">Fitze</p>
-              <p class="text-sm">2017 - 2019</p>
-            </div>
-          </div>
+        </div>
         </div>
 
 
