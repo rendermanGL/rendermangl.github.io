@@ -124,7 +124,39 @@
       }
     }
 
+     /* Hide left side (timeline & hover sections) on mobile and center titles. */
+    @media (max-width: 767px) {
+      /* Hide the entire left side. */
+      #left-side {
+        display: none;
+      }
+      /* Make the right side full width, center text, remove right padding. */
+      #right-side {
+        width: 100%;
+        padding-right: 0;
+        align-items: center !important; /* center the items horizontally */
+      }
+      /* Center the text for each link. */
+      #right-side ul {
+        text-align: center;
+      }
+      /* Remove hover events on mobile by disabling pointer events on them
+        OR you can remove them via a quick JS snippet (below). */
+      .nav-link {
+        /* If you'd like, you can override the hover style so no visual change on mobile:
+          but typically mobile doesn't trigger :hover anyway.
+          We'll set hover text to none for clarity. */
+        transition: none;
+      }
+      .nav-link:hover {
+        color: #fff; /* no hover color change on mobile */
+      }
+      /* We can also remove the onmouseenter / onmouseleave via JS if you want. */
+    }
+
   </style>
+  <!-- Firebase Configuration -->
+  <script type="module" src="./firebase-config.js"></script>
 </head>
 
 <body class="bg-customBg text-white pt-10">
@@ -234,116 +266,148 @@
 
 
     <section class="w-full bg-customBg text-white py-12">
-      <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div 
+        class="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 
+               items-start text-center"
+      >
         <!-- Column 1 -->
-        <div class="text-center">
+        <div class="flex flex-col items-center">
           <img
-            src="https://www.sylviaogweng.com/wp-content/uploads/2023/01/Home-10-custom-icon-1-inverted.png"
+            src="./img/indexPage/index_strategic_marketing_icon.png"
             alt="Digital Strategy Icon"
-            class="mx-auto w-[120px] h-auto"
+            class="object-contain mx-auto"
+            style="width: 50px; height: 50px;"
           />
-          <h5 class="mt-6 text-lg font-bold text-[#DCD7D2]">Strategic Marketing</h5>
+          <h5 class="mt-6 text-lg font-bold text-[#DCD7D2]">
+            Strategic Marketing
+          </h5>
           <p class="mt-4 text-sm font-light text-[#DCD7D2]">
-              Holistic solutions that blend customer insights, competitive analysis, and innovative strategies to position brands for long-term growth. Build meaningful connections and achieve sustainable impact.
+            Holistic solutions that blend customer insights, competitive analysis,
+            and innovative strategies to position brands for long-term growth.
+            Build meaningful connections and achieve sustainable impact.
           </p>
         </div>
     
         <!-- Column 2 -->
-        <div class="text-center">
+        <div class="flex flex-col items-center">
           <img
-            src="https://www.sylviaogweng.com/wp-content/uploads/2023/01/Home-10-custom-icon-2-inverted-1.png"
+            src="./img/indexPage/index_multi_channel_marketing_icon.png"
             alt="Social Media Icon"
-            class="mx-auto w-[120px] h-auto"
+            class="object-contain mx-auto"
+            style="width: 50px; height: 50px;"
           />
-          <h5 class="mt-6 text-lg font-bold text-[#DCD7D2]">Multi-Channel Marketing</h5>
+          <h5 class="mt-6 text-lg font-bold text-[#DCD7D2]">
+            Multi-Channel Marketing
+          </h5>
           <p class="mt-4 text-sm font-light text-[#DCD7D2]">
-              Integrated campaigns that harmonize digital, social, and offline touchpoints to deliver consistent, impactful brand experiences. Engage your audience wherever and whoever they are.
+            Integrated campaigns that harmonize digital, social, and offline
+            touchpoints to deliver consistent, impactful brand experiences.
+            Engage your audience wherever and whoever they are.
           </p>
         </div>
     
         <!-- Column 3 -->
-        <div class="text-center">
+        <div class="flex flex-col items-center">
           <img
-            src="https://www.sylviaogweng.com/wp-content/uploads/2023/01/Home-10-custom-icon-3-inverted-1.png"
+            src="./img/indexPage/index_content_direction_creation_icon.png"
             alt="Content Icon"
-            class="mx-auto w-[120px] h-auto"
+            class="object-contain mx-auto"
+            style="width: 50px; height: 50px;"
           />
-          <h5 class="mt-6 text-lg font-bold text-[#DCD7D2]">Content Direction & Creation</h5>
+          <h5 class="mt-6 text-lg font-bold text-[#DCD7D2]">
+            Content Direction & Creation
+          </h5>
           <p class="mt-4 text-sm font-light text-[#DCD7D2]">
-              Creative, data-driven content that tells your brand’s story with authenticity and purpose. Craft narratives that captivate, inform, and inspire action across all platforms.
+            Creative, data-driven content that tells your brand’s story with
+            authenticity and purpose. Craft narratives that captivate, inform,
+            and inspire action across all platforms.
           </p>
         </div>
     
         <!-- Column 4 -->
-        <div class="text-center">
+        <div class="flex flex-col items-center">
           <img
-            src="https://www.sylviaogweng.com/wp-content/uploads/2023/01/Home-10-custom-icon-4-inverted-1.png"
-            alt="Copywriting Icon"
-            class="mx-auto w-[120px] h-auto"
+            src="./img/indexPage/index_collaboration_leadership_icon.png"
+            alt="Collaboration & Leadership Icon"
+            class="object-contain mx-auto"
+            style="width: 50px; height: 50px;"
           />
-          <h5 class="mt-6 text-lg font-bold text-[#DCD7D2]">Collaboration & Leadership</h5>
+          <h5 class="mt-6 text-lg font-bold text-[#DCD7D2]">
+            Collaboration & Leadership
+          </h5>
           <p class="mt-4 text-sm font-light text-[#DCD7D2]">
-              Cross-collaborative across diverse teams and expertise to achieve shared objectives, fostering synergy between departments such as sales, operations, and product marketing while effectively managing stakeholders, agencies, and vendors.
+            Cross-collaborative across diverse teams and expertise to achieve
+            shared objectives, fostering synergy between departments such as sales,
+            operations, and product marketing while effectively managing
+            stakeholders, agencies, and vendors.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- Experience, Featured projects, Content writing samples, Recommendations-->
+    <!-- Desktop + Mobile Combined Section -->
     <section class="w-full h-screen bg-customBg text-white flex">
-      <!-- Left Side: Dynamic timleine section-->
-      <div class="flex-1 flex flex-col items-center justify-center border-r border-gray-600 relative overflow-hidden">
+
+      <!-- LEFT SIDE (Desktop Timeline, Hidden on Mobile) -->
+      <div
+        id="left-side"
+        class="flex-1 flex flex-col items-center justify-center border-r border-gray-600 relative overflow-hidden"
+      >
         <!-- Placeholder Text -->
         <p id="placeholder-text" class="text-gray-400 text-lg italic">
           Hover over the right side and see details
         </p>
-    
+
         <!-- Timeline Container -->
         <div id="timeline" class="absolute inset-0 opacity-0 transition-opacity duration-500">
           <!-- Timeline Line -->
           <div class="timeline-line"></div>
-            <div class="timeline-item" data-key="kitopi">
-                <div class="bg-purple-600 rounded-lg p-4 w-80">
-                    <span class="year">2023 - Present</span>
-                    <h3 class="font-bold text-lg">Brand Marketing Manager</h3>
-                    <p class="text-sm">Kitopi LLC</p>
-                    <p class="text-sm">2023 - Present</p>
-                </div>
-            </div>
-            <div class="timeline-item" data-key="wild">
-                <div class="bg-pink-500 rounded-lg p-4 w-80">
-                    <span class="year">2020 - 2023</span>
-                    <h3 class="font-bold text-lg">Brand & Communications Manager</h3>
-                    <p class="text-sm">Wild & The Moon</p>
-                    <p class="text-sm">2020 - 2023</p>
-                </div>
-            </div>
-        <div class="timeline-item" data-key="letswork">
-            <div class="bg-green-500 rounded-lg p-4 w-80">
-                <span class="year">2020</span>
-                <h3 class="font-bold text-lg">Community Manager</h3>
-                <p class="text-sm">Letswork</p>
-                <p class="text-sm">2020</p>
-                </div>
-        </div>
-        <div class="timeline-item" data-key="tamimi">
-            <div class="bg-yellow-500 rounded-lg p-4 w-80">
-                <span class="year">2019 - 2020</span>
-                <h3 class="font-bold text-lg">Management Trainee</h3>
-                <p class="text-sm">Al Tamimi & Company</p>
-                <p class="text-sm">2019 - 2020</p>
-            </div>
-        </div>
-        <div class="timeline-item" data-key="fitze">
-            <div class="bg-blue-500 rounded-lg p-4 w-80">
-                <span class="year">2017 - 2019</span>
-                <h3 class="font-bold text-lg">Events Intern</h3>
-                <p class="text-sm">Fitze</p>
-                <p class="text-sm">2017 - 2019</p>
-            </div>
-        </div>
-        </div>
 
+          <div class="timeline-item" data-key="kitopi">
+            <div class="bg-purple-600 rounded-lg p-4 w-80">
+              <span class="year">2023 - Present</span>
+              <h3 class="font-bold text-lg">Brand Marketing Manager</h3>
+              <p class="text-sm">Kitopi LLC</p>
+              <p class="text-sm">2023 - Present</p>
+            </div>
+          </div>
+
+          <div class="timeline-item" data-key="wild">
+            <div class="bg-pink-500 rounded-lg p-4 w-80">
+              <span class="year">2020 - 2023</span>
+              <h3 class="font-bold text-lg">Brand & Communications Manager</h3>
+              <p class="text-sm">Wild & The Moon</p>
+              <p class="text-sm">2020 - 2023</p>
+            </div>
+          </div>
+
+          <div class="timeline-item" data-key="letswork">
+            <div class="bg-green-500 rounded-lg p-4 w-80">
+              <span class="year">2020</span>
+              <h3 class="font-bold text-lg">Community Manager</h3>
+              <p class="text-sm">Letswork</p>
+              <p class="text-sm">2020</p>
+            </div>
+          </div>
+
+          <div class="timeline-item" data-key="tamimi">
+            <div class="bg-yellow-500 rounded-lg p-4 w-80">
+              <span class="year">2019 - 2020</span>
+              <h3 class="font-bold text-lg">Management Trainee</h3>
+              <p class="text-sm">Al Tamimi & Company</p>
+              <p class="text-sm">2019 - 2020</p>
+            </div>
+          </div>
+
+          <div class="timeline-item" data-key="fitze">
+            <div class="bg-blue-500 rounded-lg p-4 w-80">
+              <span class="year">2017 - 2019</span>
+              <h3 class="font-bold text-lg">Events Intern</h3>
+              <p class="text-sm">Fitze</p>
+              <p class="text-sm">2017 - 2019</p>
+            </div>
+          </div>
+        </div>
 
         <!-- Recommendations Section -->
         <div
@@ -351,18 +415,19 @@
           class="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center opacity-0 transition-opacity duration-500"
         >
           <div id="recommendation-content" class="text-center space-y-4">
-            <p class="text-lg text-gray-300 font-light italic">"This is a placeholder recommendation text."</p>
+            <p class="text-lg text-gray-300 font-light italic">
+              "This is a placeholder recommendation text."
+            </p>
             <hr class="w-1/3 mx-auto border-gray-400">
             <p class="text-sm text-gray-400 italic">- Name of Person</p>
           </div>
           <!-- Progress Bar -->
           <div
-          id="progress-bar"
-          class="w-0 h-1 bg-gray-200 mt-4 transition-all duration-[8000ms]"
+            id="progress-bar"
+            class="w-0 h-1 bg-gray-200 mt-4 transition-all duration-[8000ms]"
           >
           </div>
         </div>
-
 
         <!-- Featured Projects -->
         <div
@@ -373,7 +438,11 @@
             <!-- Image 1 -->
             <div class="flex flex-col items-center">
               <div class="relative flex items-center w-[300px] h-[300px] bg-gray-700 rounded-lg">
-                <img src="/img/featuredProjects/Strategic Marketing.jpg" alt="Strategic Marketing" class="w-full h-full object-cover rounded-lg opacity-60">
+                <img
+                  src="/img/featuredProjects/Strategic Marketing.jpg"
+                  alt="Strategic Marketing"
+                  class="w-full h-full object-cover rounded-lg opacity-60"
+                />
                 <div class="absolute inset-0 flex items-center justify-center">
                   <h4 class="text-2xl font-bold text-white">Strategic Marketing</h4>
                 </div>
@@ -382,68 +451,108 @@
             <!-- Image 2 -->
             <div class="flex flex-col items-center">
               <div class="relative flex items-center w-[300px] h-[300px] bg-gray-700 rounded-lg">
-                <img src="/img/featuredProjects/Customer Experience & Community Engagement.png" alt="customer experience and communty engagement" class="w-full h-full object-cover rounded-lg opacity-60">
+                <img
+                  src="/img/featuredProjects/Customer Experience & Community Engagement.png"
+                  alt="customer experience and community engagement"
+                  class="w-full h-full object-cover rounded-lg opacity-60"
+                />
                 <div class="absolute inset-0 flex items-center justify-center">
-                  <h4 class="text-2xl font-bold text-white text-center">Customer Experience & Community Engagement</h4>
+                  <h4 class="text-2xl font-bold text-white text-center">
+                    Customer Experience & Community Engagement
+                  </h4>
                 </div>
               </div>
             </div>
             <!-- Image 3 -->
             <div class="flex flex-col items-center">
               <div class="relative flex items-center w-[300px] h-[300px] bg-gray-700 rounded-lg">
-                <img src="/img/featuredProjects/Brand Storytelling & Multi-Channel Marketing.png" alt="Brand storytelling and multi-channel marketing" class="w-full h-full object-cover rounded-lg opacity-60">
+                <img
+                  src="/img/featuredProjects/Brand Storytelling & Multi-Channel Marketing.png"
+                  alt="Brand storytelling and multi-channel marketing"
+                  class="w-full h-full object-cover rounded-lg opacity-60"
+                />
                 <div class="absolute inset-0 flex items-center justify-center">
-                  <h4 class="text-2xl font-bold text-white text-center">Brand Storytelling & Multi-Channel Marketing</h4>
+                  <h4 class="text-2xl font-bold text-white text-center">
+                    Brand Storytelling & Multi-Channel Marketing
+                  </h4>
                 </div>
               </div>
             </div>
             <!-- Image 4 -->
             <div class="flex flex-col items-center">
               <div class="relative flex items-center w-[300px] h-[300px] bg-gray-700 rounded-lg">
-                <img src="/img/featuredProjects/Awards & Recognition.jpg" alt="Awards and recognition" class="w-full h-full object-cover rounded-lg opacity-60">
+                <img
+                  src="/img/featuredProjects/Awards & Recognition.jpg"
+                  alt="Awards and recognition"
+                  class="w-full h-full object-cover rounded-lg opacity-60"
+                />
                 <div class="absolute inset-0 flex items-center justify-center">
-                  <h4 class="text-2xl font-bold text-white text-center">Awards & Recognition</h4>
+                  <h4 class="text-2xl font-bold text-white text-center">
+                    Awards & Recognition
+                  </h4>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Content Writing samples -->
-        <div id="content-writing-samples" class="absolute top-0 left-0 w-full h-full flex flex-col justify-center opacity-0 transition-opacity duration-500">
+        <!-- Content Writing Samples -->
+        <div
+          id="content-writing-samples"
+          class="absolute top-0 left-0 w-full h-full flex flex-col justify-center opacity-0 transition-opacity duration-500"
+        >
           <div class="flex flex-col items-start space-y-8 pl-12">
             <!-- Box 1 -->
             <div class="relative flex items-center w-[300px] h-[300px]">
-              <img src="/img/contentWritingSamples/Press Release.jpg" alt="Press Releases" class="w-full h-full object-cover rounded-lg opacity-20">
+              <img
+                src="/img/contentWritingSamples/Press Release.jpg"
+                alt="Press Releases"
+                class="w-full h-full object-cover rounded-lg opacity-20"
+              />
               <div class="absolute inset-0 flex items-center justify-center">
                 <h4 class="text-2xl font-bold text-white">Press Releases</h4>
               </div>
             </div>
             <!-- Box 2 -->
             <div class="relative flex items-center w-[300px] h-[300px]">
-              <img src="/img/contentWritingSamples/Award Ap.jpg" alt="Award Applications & Writeups" class="w-full h-full object-cover rounded-lg opacity-20">
+              <img
+                src="/img/contentWritingSamples/Award Ap.jpg"
+                alt="Award Applications & Writeups"
+                class="w-full h-full object-cover rounded-lg opacity-20"
+              />
               <div class="absolute inset-0 flex items-center justify-center">
-                <h4 class="text-2xl font-bold text-white text-center">Award Applications & Writeups</h4>
+                <h4 class="text-2xl font-bold text-white text-center">
+                  Award Applications & Writeups
+                </h4>
               </div>
             </div>
             <!-- Box 3 -->
             <div class="relative flex items-center w-[300px] h-[300px]">
-              <img src="/img/contentWritingSamples/Email Marketing.jpg" alt="Email Marketing" class="w-full h-full object-cover rounded-lg opacity-20">
+              <img
+                src="/img/contentWritingSamples/Email Marketing.jpg"
+                alt="Email Marketing"
+                class="w-full h-full object-cover rounded-lg opacity-20"
+              />
               <div class="absolute inset-0 flex items-center justify-center">
                 <h4 class="text-2xl font-bold text-white">Email Marketing</h4>
               </div>
             </div>
           </div>
-        </div>        
+        </div>
       </div>
+      <!-- END LEFT SIDE (Desktop only) -->
 
-      <!-- Right Side: Navigation Links -->
-      <div class="flex-1 flex flex-col justify-center items-end pr-12">
+      <!-- RIGHT SIDE: NAVIGATION LINKS -->
+      <div
+        id="right-side"
+        class="flex-1 flex flex-col justify-center items-end pr-12"
+      >
         <ul class="space-y-12 text-right">
           <li>
             <a
               href="/experience.html"
-              class="text-5xl font-anton text-gray-200 hover:text-gray-400 transition"
+              id="work-experiences-trigger"
+              class="nav-link text-5xl font-anton text-gray-200 hover:text-gray-400 transition"
               onmouseenter="fadeInTimeline()"
               onmouseleave="fadeOutTimeline()"
             >
@@ -451,32 +560,40 @@
             </a>
           </li>
           <li>
-            <a href="/projects.html" 
-            class="text-5xl font-anton text-gray-200 hover:text-gray-400 transition"
-            onmouseenter="fadeInFeaturedProjects()"
-            onmouseleave="fadeOutFeaturedProjects()">
+            <a
+              href="/projects.html"
+              id="featured-projects-trigger"
+              class="nav-link text-5xl font-anton text-gray-200 hover:text-gray-400 transition"
+              onmouseenter="fadeInFeaturedProjects()"
+              onmouseleave="fadeOutFeaturedProjects()"
+            >
               FEATURED PROJECTS
             </a>
           </li>
           <li>
-            <a href="/contentWriting.html" 
-              class="text-5xl font-anton text-gray-200 hover:text-gray-400 transition"
+            <a
+              href="/contentWriting.html"
+              id="content-writing-samples-trigger"
+              class="nav-link text-5xl font-anton text-gray-200 hover:text-gray-400 transition"
               onmouseenter="fadeInContentWritingSamples()"
-              onmouseleave="fadeOutContentWritingSamples()">
+              onmouseleave="fadeOutContentWritingSamples()"
+            >
               CONTENT WRITING SAMPLES
             </a>
           </li>
           <li>
-            <a href="#" 
+            <a
+              href="#"
               id="recommendations-trigger"
-              class="text-5xl font-anton text-gray-200 hover:text-gray-400 transition">
+              class="nav-link text-5xl font-anton text-gray-200 hover:text-gray-400 transition"
+            >
               RECOMMENDATIONS
             </a>
           </li>
         </ul>
       </div>
+      <!-- END RIGHT SIDE -->
     </section>
-
 
     <!-- Brands -->
     <section class="w-full bg-customBg text-white py-12 overflow-hidden">
@@ -864,6 +981,26 @@
       clearInterval(interval); // Stop cycling recommendations
       progressBar.style.width = "0%"; // Reset progress bar
     });
+
+  //   document.addEventListener("DOMContentLoaded", () => {
+  //   if (window.innerWidth < 768) {
+  //     const links = document.querySelectorAll('.nav-link');
+  //     links.forEach(link => {
+  //       // Remove the hover triggers
+  //       link.removeAttribute('onmouseenter');
+  //       link.removeAttribute('onmouseleave');
+  //     });
+  //   }
+  // });
+  </script>
+  <script type="module">
+    import { getApps } from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js';
+    import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-analytics.js';
+  
+    const apps = getApps();
+    if (apps.length > 0) {
+      const analytics = getAnalytics(apps[0]);
+    }
   </script>
 </body>
 </html>
