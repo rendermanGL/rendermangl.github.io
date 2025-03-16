@@ -26,7 +26,7 @@
       100% {
         transform: translateX(-50%);
       }
-    }
+    }jlj
 
     #brands-carousel {
       display: flex;
@@ -36,7 +36,7 @@
 
     /* Ensure no scrollbar */
     .no-scrollbar {
-      -ms-overflow-style: none; /* Internet Explorer 10+ */
+      -ms-overflow-style: none; /* Internet Explorer 10+ */ 
       scrollbar-width: none; /* Firefox */
     }
 
@@ -44,83 +44,229 @@
       display: none; /* Chrome, Safari, Opera */
     }
 
-    .timeline-container {
-      display: flex;
+     /* Timeline container */
+     .timeline-container {
       flex-direction: column;
       align-items: center;
       position: relative;
       width: 100%;
       max-width: 800px;
-      margin: auto;
+      margin: 50px auto;
+      padding: 20px 0;
     }
+    
+    /* The vertical timeline line */
     .timeline-line {
       position: absolute;
       left: 50%;
       width: 4px;
       height: 100%;
-      background: gray;
+      background: #444444; /* Gray accent */
       transform: translateX(-50%);
     }
+    
+    /* Timeline items */
     .timeline-item {
       display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      text-align: left;
       width: 100%;
-      margin: 20px 0;
+      margin: 30px 0;
       cursor: pointer;
       position: relative;
+      transition: transform 0.3s ease;
     }
-    .timeline-item:nth-child(odd){
+    
+    .timeline-item:hover {
+      transform: translateY(-5px);
+    }
+    
+    /* Alternate sides */
+    .timeline-item:nth-child(odd) {
       flex-direction: row-reverse;
       text-align: right;
     }
-    .timeline-item:nth-child(even){
+    
+    .timeline-item:nth-child(even) {
       flex-direction: row;
       text-align: left;
     }
+    
+    /* Timeline cards */
+    .timeline-item .card {
+      border-radius: 8px;
+      padding: 20px;
+      width: 300px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      position: relative;
+    }
+    
+    /* Year label */
     .timeline-item .year {
       font-weight: bold;
-      font-size: 0.6rem;
-      /* color: #333; */
-      color: white;
+      font-size: 0.8rem;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+    
+    /* Timeline dots */
+    .timeline-item:before {
+      content: '';
       position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background-color: #121212;
+      border: 3px solid #444444;
+      top: 25px;
       left: 50%;
       transform: translateX(-50%);
-      /* background: white; */
-      padding: 5px 10px;
-      border-radius: 5px;
+      z-index: 1;
+      transition: background-color 0.3s ease;
     }
-    .timeline-item .content {
-      background: white;
-      padding: 15px;
-      border-radius: 10px;
-      width: 300px;
-      transition: transform 0.3s ease-in-out;
+    
+    .timeline-item:hover:before {
+      background-color: #ffffff;
     }
+    
+    /* Timeline item styling */
+    .timeline-item[data-key="kitopi"] .card {
+      background: #1a1326; /* Darker purple */
+      border-left: 4px solid #9333ea;
+    }
+    
+    .timeline-item[data-key="wild"] .card {
+      background: #1e1018; /* Darker pink */
+      border-left: 4px solid #ec4899;
+    }
+    
+    .timeline-item[data-key="letswork"] .card {
+      background: #0e1f14; /* Darker green */
+      border-left: 4px solid #22c55e;
+    }
+    
+    .timeline-item[data-key="tamimi"] .card {
+      background: #1f1a0c; /* Darker yellow */
+      border-left: 4px solid #eab308;
+    }
+    
+    .timeline-item[data-key="fitze"] .card {
+      background: #0e1726; /* Darker blue */
+      border-left: 4px solid #3b82f6;
+    }
+    
+    /* Fix border position for right-side items */
+    .timeline-item:nth-child(odd) .card {
+      border-left: none;
+      border-right: 4px solid;
+    }
+    
+    .timeline-item[data-key="kitopi"]:nth-child(odd) .card {
+      border-right-color: #9333ea;
+    }
+    
+    .timeline-item[data-key="wild"]:nth-child(odd) .card {
+      border-right-color: #ec4899;
+    }
+    
+    .timeline-item[data-key="letswork"]:nth-child(odd) .card {
+      border-right-color: #22c55e;
+    }
+    
+    .timeline-item[data-key="tamimi"]:nth-child(odd) .card {
+      border-right-color: #eab308;
+    }
+    
+    .timeline-item[data-key="fitze"]:nth-child(odd) .card {
+      border-right-color: #3b82f6;
+    }
+    
+    /* Spacing between timeline items and line */
+    .timeline-item:nth-child(odd) .card {
+      margin-right: 40px;
+    }
+    
+    .timeline-item:nth-child(even) .card {
+      margin-left: 40px;
+    }
+    
+    /* Animation */
+    .timeline-container {
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .timeline-item {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideIn 0.6s ease forwards;
+      animation-delay: calc(var(--item-index) * 0.2s);
+    }
+    
+    @keyframes slideIn {
+      from { 
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Responsive adjustments */
     @media (max-width: 768px) {
       .timeline-line {
-        display: none;
+        left: 20px;
       }
-
-      .timeline-item:nth-child(odd){
-        flex-direction: column;
-        text-align: center;
+      
+      .timeline-item:nth-child(odd),
+      .timeline-item:nth-child(even) {
+        flex-direction: row;
+        text-align: left;
+        padding-left: 45px;
       }
-      .timeline-item:nth-child(even){
-        flex-direction: column;
-        text-align: center;
+      
+      .timeline-item:before {
+        left: 20px;
       }
-      .timeline-item .content {
-        text-align: center;
-        width: 90%;
+      
+      .timeline-item .card {
+        width: calc(100% - 60px);
+        margin-left: 40px !important;
+        margin-right: 0 !important;
       }
-      /* .timeline-line {
-        left: 5%;
-      } */
-      .timeline-item .year {
-        /* left: 10%; */
-        display: none;
+      
+      .timeline-item:nth-child(odd) .card {
+        border-right: none;
+        border-left: 4px solid;
+      }
+      
+      .timeline-item[data-key="kitopi"]:nth-child(odd) .card {
+        border-left-color: #9333ea;
+      }
+      
+      .timeline-item[data-key="wild"]:nth-child(odd) .card {
+        border-left-color: #ec4899;
+      }
+      
+      .timeline-item[data-key="letswork"]:nth-child(odd) .card {
+        border-left-color: #22c55e;
+      }
+      
+      .timeline-item[data-key="tamimi"]:nth-child(odd) .card {
+        border-left-color: #eab308;
+      }
+      
+      .timeline-item[data-key="fitze"]:nth-child(odd) .card {
+        border-left-color: #3b82f6;
       }
     }
 
@@ -154,6 +300,27 @@
       /* We can also remove the onmouseenter / onmouseleave via JS if you want. */
     }
 
+
+    .fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .fade-in-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .section-dark {
+    /* background: rgba(18, 18, 18, 0.9); Darker tint for contrast */
+    background: #292929;
+  }
+
+  .content-padding{
+    padding: 6px 6px 6px 6px;
+  }
+
   </style>
   <!-- Firebase Configuration -->
   <script type="module" src="./firebase-config.js"></script>
@@ -162,7 +329,7 @@
 <body class="bg-customBg text-white pt-10">
   
   <!-- Header Section -->
-  <header class="bg-customBg text-white">
+  <header class="fade-in-section bg-customBg text-white">
     <!-- Horizontal Line -->
     <div class="border-t border-white-400 w-full"></div>
     <!-- Navigation Menu -->
@@ -217,13 +384,13 @@
 
   <!-- Main Section -->
   <main class="container mx-auto p-8">
-    <section class="w-full flex items-start justify-center">
+    <section class="fade-in-section w-full flex items-start justify-center">
         <div class="text-center">
             <h1 class="name-title text-[200px] leading-[200px] tracking-[-3px] uppercase text-[#DCD7D2]" style="font-weight: 600;"> AIRIN JOHN </h1>
         </div>
     </section>
       
-    <section class="w-full mt-[10px] py-6 bg-customBg text-white">
+    <section class="fade-in-section w-full mt-[10px] py-6 bg-customBg text-white">
       <div class="container mx-auto flex flex-wrap justify-between items-center">
         <div class="flex-1 text-sm font-thin navbar-font text-left">
           <p>Based in Dubai, United Arab Emirates</p>
@@ -247,7 +414,7 @@
     </section>
       
 
-    <section class="w-full bg-cover bg-center h-[300px]">
+    <section class="fade-in-section w-full bg-cover bg-center h-[300px]">
       <img
         src="img/home-image.jpg"
         alt="Stretched Image Banner"
@@ -255,7 +422,7 @@
       />
     </section>
       
-    <section class="w-full py-8 bg-customBg text-white">
+    <section class="fade-in-section w-full py-8 bg-customBg text-white">
       <div class="container mx-auto text-center">
         <p class="text-base font-light">
           <p><span class="text-[#c2aeb1]">SCALING BRANDS AND</span> DRIVING MEANINGFUL CONNECTIONS <span class="text-[#c2aeb1]">THROUGH</span> DATA-DRIVEN STRATEGIES <span class="text-[#c2aeb1]">AND</span> COMPELLING STORYTELLING</p>
@@ -265,11 +432,8 @@
     </section>
 
 
-    <section class="w-full bg-customBg text-white py-12">
-      <div 
-        class="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 
-               items-start text-center"
-      >
+    <section class="fade-in-section w-full bg-customBg text-white py-12">
+      <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 items-start text-center">
         <!-- Column 1 -->
         <div class="flex flex-col items-center">
           <img
@@ -345,258 +509,169 @@
       </div>
     </section>
 
-    <!-- Desktop + Mobile Combined Section -->
-    <section class="w-full h-screen bg-customBg text-white flex">
-
-      <!-- LEFT SIDE (Desktop Timeline, Hidden on Mobile) -->
-      <div
-        id="left-side"
-        class="flex-1 flex flex-col items-center justify-center border-r border-gray-600 relative overflow-hidden"
-      >
-        <!-- Placeholder Text -->
-        <p id="placeholder-text" class="text-gray-400 text-lg italic">
-          Hover over the right side and see details
-        </p>
-
-        <!-- Timeline Container -->
-        <div id="timeline" class="absolute inset-0 opacity-0 transition-opacity duration-500">
-          <!-- Timeline Line -->
-          <div class="timeline-line"></div>
-
-          <div class="timeline-item" data-key="kitopi">
-            <div class="bg-purple-600 rounded-lg p-4 w-80">
-              <span class="year">2023 - Present</span>
-              <h3 class="font-bold text-lg">Brand Marketing Manager</h3>
-              <p class="text-sm">Kitopi LLC</p>
-              <p class="text-sm">2023 - Present</p>
-            </div>
-          </div>
-
-          <div class="timeline-item" data-key="wild">
-            <div class="bg-pink-500 rounded-lg p-4 w-80">
-              <span class="year">2020 - 2023</span>
-              <h3 class="font-bold text-lg">Brand & Communications Manager</h3>
-              <p class="text-sm">Wild & The Moon</p>
-              <p class="text-sm">2020 - 2023</p>
-            </div>
-          </div>
-
-          <div class="timeline-item" data-key="letswork">
-            <div class="bg-green-500 rounded-lg p-4 w-80">
-              <span class="year">2020</span>
-              <h3 class="font-bold text-lg">Community Manager</h3>
-              <p class="text-sm">Letswork</p>
-              <p class="text-sm">2020</p>
-            </div>
-          </div>
-
-          <div class="timeline-item" data-key="tamimi">
-            <div class="bg-yellow-500 rounded-lg p-4 w-80">
-              <span class="year">2019 - 2020</span>
-              <h3 class="font-bold text-lg">Management Trainee</h3>
-              <p class="text-sm">Al Tamimi & Company</p>
-              <p class="text-sm">2019 - 2020</p>
-            </div>
-          </div>
-
-          <div class="timeline-item" data-key="fitze">
-            <div class="bg-blue-500 rounded-lg p-4 w-80">
-              <span class="year">2017 - 2019</span>
-              <h3 class="font-bold text-lg">Events Intern</h3>
-              <p class="text-sm">Fitze</p>
-              <p class="text-sm">2017 - 2019</p>
-            </div>
-          </div>
+    <!-- Updated Work Experience Section -->
+    <section id="work-experience" class="fade-in-section w-full h-screen bg-customBg text-white items-center justify-center shadow-xl shadow-gray-800">
+      <div class="timeline-container text-center">
+        <!-- <h2 class="text-4xl font-bold mb-6">Work Experience</h2> -->
+        <div class="timeline-line"></div>
+        <div class="timeline-item" data-key="kitopi">
+          <div class="card"><span class="year">2023 - Present</span><h3>Brand Marketing Manager</h3><p>Kitopi LLC</p></div>
         </div>
-
-        <!-- Recommendations Section -->
-        <div
-          id="recommendations"
-          class="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center opacity-0 transition-opacity duration-500"
-        >
-          <div id="recommendation-content" class="text-center space-y-4">
-            <p class="text-lg text-gray-300 font-light italic">
-              "This is a placeholder recommendation text."
-            </p>
-            <hr class="w-1/3 mx-auto border-gray-400">
-            <p class="text-sm text-gray-400 italic">- Name of Person</p>
-          </div>
-          <!-- Progress Bar -->
-          <div
-            id="progress-bar"
-            class="w-0 h-1 bg-gray-200 mt-4 transition-all duration-[8000ms]"
-          >
-          </div>
+        <div class="timeline-item" data-key="wild">
+          <div class="card"><span class="year">2020 - 2023</span><h3>Brand & Communications Manager</h3><p>Wild & The Moon</p></div>
         </div>
-
-        <!-- Featured Projects -->
-        <div
-          id="featured-projects"
-          class="absolute top-0 left-0 w-full h-full flex justify-center items-center opacity-0 transition-opacity duration-500"
-        >
-          <div class="grid grid-cols-2 gap-8">
-            <!-- Image 1 -->
-            <div class="flex flex-col items-center">
-              <div class="relative flex items-center w-[300px] h-[300px] bg-gray-700 rounded-lg">
-                <img
-                  src="/img/featuredProjects/Strategic Marketing.jpg"
-                  alt="Strategic Marketing"
-                  class="w-full h-full object-cover rounded-lg opacity-60"
-                />
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <h4 class="text-2xl font-bold text-white">Strategic Marketing</h4>
-                </div>
-              </div>
-            </div>
-            <!-- Image 2 -->
-            <div class="flex flex-col items-center">
-              <div class="relative flex items-center w-[300px] h-[300px] bg-gray-700 rounded-lg">
-                <img
-                  src="/img/featuredProjects/Customer Experience & Community Engagement.png"
-                  alt="customer experience and community engagement"
-                  class="w-full h-full object-cover rounded-lg opacity-60"
-                />
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <h4 class="text-2xl font-bold text-white text-center">
-                    Customer Experience & Community Engagement
-                  </h4>
-                </div>
-              </div>
-            </div>
-            <!-- Image 3 -->
-            <div class="flex flex-col items-center">
-              <div class="relative flex items-center w-[300px] h-[300px] bg-gray-700 rounded-lg">
-                <img
-                  src="/img/featuredProjects/Brand Storytelling & Multi-Channel Marketing.png"
-                  alt="Brand storytelling and multi-channel marketing"
-                  class="w-full h-full object-cover rounded-lg opacity-60"
-                />
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <h4 class="text-2xl font-bold text-white text-center">
-                    Brand Storytelling & Multi-Channel Marketing
-                  </h4>
-                </div>
-              </div>
-            </div>
-            <!-- Image 4 -->
-            <div class="flex flex-col items-center">
-              <div class="relative flex items-center w-[300px] h-[300px] bg-gray-700 rounded-lg">
-                <img
-                  src="/img/featuredProjects/Awards & Recognition.jpg"
-                  alt="Awards and recognition"
-                  class="w-full h-full object-cover rounded-lg opacity-60"
-                />
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <h4 class="text-2xl font-bold text-white text-center">
-                    Awards & Recognition
-                  </h4>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="timeline-item" data-key="letswork">
+          <div class="card"><span class="year">2020</span><h3>Community Manager</h3><p>Letswork</p></div>
         </div>
-
-        <!-- Content Writing Samples -->
-        <div
-          id="content-writing-samples"
-          class="absolute top-0 left-0 w-full h-full flex flex-col justify-center opacity-0 transition-opacity duration-500"
-        >
-          <div class="flex flex-col items-start space-y-8 pl-12">
-            <!-- Box 1 -->
-            <div class="relative flex items-center w-[300px] h-[300px]">
-              <img
-                src="/img/contentWritingSamples/Press Release.jpg"
-                alt="Press Releases"
-                class="w-full h-full object-cover rounded-lg opacity-20"
-              />
-              <div class="absolute inset-0 flex items-center justify-center">
-                <h4 class="text-2xl font-bold text-white">Press Releases</h4>
-              </div>
-            </div>
-            <!-- Box 2 -->
-            <div class="relative flex items-center w-[300px] h-[300px]">
-              <img
-                src="/img/contentWritingSamples/Award Ap.jpg"
-                alt="Award Applications & Writeups"
-                class="w-full h-full object-cover rounded-lg opacity-20"
-              />
-              <div class="absolute inset-0 flex items-center justify-center">
-                <h4 class="text-2xl font-bold text-white text-center">
-                  Award Applications & Writeups
-                </h4>
-              </div>
-            </div>
-            <!-- Box 3 -->
-            <div class="relative flex items-center w-[300px] h-[300px]">
-              <img
-                src="/img/contentWritingSamples/Email Marketing.jpg"
-                alt="Email Marketing"
-                class="w-full h-full object-cover rounded-lg opacity-20"
-              />
-              <div class="absolute inset-0 flex items-center justify-center">
-                <h4 class="text-2xl font-bold text-white">Email Marketing</h4>
-              </div>
-            </div>
-          </div>
+        <div class="timeline-item" data-key="tamimi">
+          <div class="card"><span class="year">2019 - 2020</span><h3>Management Trainee</h3><p>Al Tamimi & Company</p></div>
+        </div>
+        <div class="timeline-item" data-key="fitze">
+          <div class="card"><span class="year">2017 - 2019</span><h3>Events Intern</h3><p>Fitze</p></div>
         </div>
       </div>
-      <!-- END LEFT SIDE (Desktop only) -->
-
-      <!-- RIGHT SIDE: NAVIGATION LINKS -->
-      <div
-        id="right-side"
-        class="flex-1 flex flex-col justify-center items-end pr-12"
-      >
-        <ul class="space-y-12 text-right">
-          <li>
-            <a
-              href="/experience.html"
-              id="work-experiences-trigger"
-              class="nav-link text-5xl font-anton text-gray-200 hover:text-gray-400 transition"
-              onmouseenter="fadeInTimeline()"
-              onmouseleave="fadeOutTimeline()"
-            >
-              WORK EXPERIENCES
-            </a>
-          </li>
-          <li>
-            <a
-              href="/projects.html"
-              id="featured-projects-trigger"
-              class="nav-link text-5xl font-anton text-gray-200 hover:text-gray-400 transition"
-              onmouseenter="fadeInFeaturedProjects()"
-              onmouseleave="fadeOutFeaturedProjects()"
-            >
-              FEATURED PROJECTS
-            </a>
-          </li>
-          <li>
-            <a
-              href="/contentWriting.html"
-              id="content-writing-samples-trigger"
-              class="nav-link text-5xl font-anton text-gray-200 hover:text-gray-400 transition"
-              onmouseenter="fadeInContentWritingSamples()"
-              onmouseleave="fadeOutContentWritingSamples()"
-            >
-              CONTENT WRITING SAMPLES
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              id="recommendations-trigger"
-              class="nav-link text-5xl font-anton text-gray-200 hover:text-gray-400 transition"
-            >
-              RECOMMENDATIONS
-            </a>
-          </li>
-        </ul>
-      </div>
-      <!-- END RIGHT SIDE -->
     </section>
 
+    <!-- Updated Featured Projects Section -->
+    <section id="featured-projects" class="fade-in-section w-full h-screen bg-customBg text-white flex">
+      <!-- Left Side: Title & Description -->
+      <div class="w-1/2 flex flex-col justify-center">
+        <h2 class="text-4xl font-bold mb-4">Featured Projects</h2>
+        <p class="text-lg">Explore case studies and successful brand activations showcasing multi-channel marketing, digital strategies, and content storytelling.</p>
+      </div>
+
+      <!-- Right Side: Image Tiles -->
+      <div class="w-1/2 flex flex-col justify-center">
+        <div class="grid grid-cols-2 gap-2">
+          <!-- Tile 1 -->
+          <a href="/projects.html" class="block content-padding">
+            <div class="relative w-full h-[300px] bg-gray-700 rounded-lg overflow-hidden">
+              <img src="/img/featuredProjects/Strategic Marketing.jpg" alt="Strategic Marketing"
+                class="w-full h-full object-cover opacity-60 transition hover:opacity-80" />
+              <div class="absolute inset-0 flex items-center justify-center">
+                <h4 class="text-xl font-bold text-white text-center">Strategic Marketing</h4>
+              </div>
+            </div>
+          </a>
+
+          <!-- Tile 2 -->
+          <a href="/projects.html" class="block content-padding">
+            <div class="relative w-full h-[300px] bg-gray-700 rounded-lg overflow-hidden">
+              <img src="/img/featuredProjects/Customer Experience & Community Engagement.png" alt="Customer Experience & Engagement"
+                class="w-full h-full object-cover opacity-60 transition hover:opacity-80" />
+              <div class="absolute inset-0 flex items-center justify-center">
+                <h4 class="text-xl font-bold text-white text-center">Customer Experience & Community Engagement</h4>
+              </div>
+            </div>
+          </a>
+
+          <!-- Tile 3 -->
+          <a href="/projects.html" class="block content-padding">
+            <div class="relative w-full h-[300px] bg-gray-700 rounded-lg overflow-hidden">
+              <img src="/img/featuredProjects/Brand Storytelling & Multi-Channel Marketing.png" alt="Brand Storytelling & Multi-Channel Marketing"
+                class="w-full h-full object-cover opacity-60 transition hover:opacity-80" />
+              <div class="absolute inset-0 flex items-center justify-center">
+                <h4 class="text-xl font-bold text-white text-center">Brand Storytelling & Multi-Channel Marketing</h4>
+              </div>
+            </div>
+          </a>
+
+          <!-- Tile 4 -->
+          <a href="/projects.html" class="block content-padding">
+            <div class="relative w-full h-[300px] bg-gray-700 rounded-lg overflow-hidden">
+              <img src="/img/featuredProjects/Awards & Recognition.jpg" alt="Awards & Recognition"
+                class="w-full h-full object-cover opacity-60 transition hover:opacity-80" />
+              <div class="absolute inset-0 flex items-center justify-center">
+                <h4 class="text-xl font-bold text-white text-center">Awards & Recognition</h4>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- Updated Content Writing Samples Section -->
+    <section id="content-writing" class="fade-in-section w-full min-h-screen bg-customBg text-white flex flex-col items-center py-12">
+      <!-- Title -->
+      <h2 class="text-4xl font-bold mb-8">Content Writing Samples</h2>
+
+      <!-- Image Tiles -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-5xl px-6">
+        <!-- Box 1 -->
+        <a href="/contentWriting.html" class="relative block w-full h-[300px] py-2">
+          <img src="/img/contentWritingSamples/Press Release.jpg" alt="Press Releases"
+            class="w-full h-full object-cover rounded-lg opacity-60 transition hover:opacity-80" />
+          <div class="absolute inset-0 flex items-center justify-center">
+            <h4 class="text-xl sm:text-2xl font-bold text-white text-center">Press Releases</h4>
+          </div>
+        </a>
+
+        <!-- Box 2 -->
+        <a href="/contentWriting.html" class="relative block w-full h-[300px] py-2">
+          <img src="/img/contentWritingSamples/Award Ap.jpg" alt="Award Applications & Writeups"
+            class="w-full h-full object-cover rounded-lg opacity-60 transition hover:opacity-80" />
+          <div class="absolute inset-0 flex items-center justify-center">
+            <h4 class="text-xl sm:text-2xl font-bold text-white text-center">Award Applications & Writeups</h4>
+          </div>
+        </a>
+
+        <!-- Box 3 -->
+        <a href="/contentWriting.html" class="relative block w-full h-[300px] py-2">
+          <img src="/img/contentWritingSamples/Email Marketing.jpg" alt="Email Marketing"
+            class="w-full h-full object-cover rounded-lg opacity-60 transition hover:opacity-80" />
+          <div class="absolute inset-0 flex items-center justify-center">
+            <h4 class="text-xl sm:text-2xl font-bold text-white text-center">Email Marketing</h4>
+          </div>
+        </a>
+      </div>
+    </section>
+
+
+
+<!-- Recommendations Section -->
+<section id="recommendations" class="fade-in-section w-full h-screen bg-customBg text-white flex flex-col items-center justify-center relative">
+  
+  <!-- Heading at the Top -->
+  <h2 class="text-4xl font-bold mb-8">Recommendations</h2>
+
+  <!-- Carousel Wrapper -->
+  <div class="relative w-3/4 h-3/5 flex items-center justify-center overflow-hidden">
+    
+    <!-- Left Navigation Button -->
+    <button id="prev-recommendation" class="absolute left-4 text-3xl px-4 py-2 bg-gray-800 rounded-full z-10">
+    </button>
+
+    <!-- Slider Container -->
+    <div id="recommendation-slider" class="relative w-full h-auto flex transition-transform duration-700 ease-in-out">
+      <!-- Each Recommendation Slide -->
+      <div class="recommendation-slide w-full text-center px-12 opacity-100 transition-all duration-700 ease-in-out">
+        <p class="text-lg italic">"Airin and I worked together at Kitopi for more than a year, and I was really impressed by her marketing knowledge, creativity, and ownership!"</p>
+        <p class="text-sm mt-4 font-semibold">- Fabienne Naggear, Senior Brand Manager | Kitopi</p>
+      </div>
+      <div class="recommendation-slide w-full text-center px-12 opacity-0 absolute transition-all duration-700 ease-in-out">
+        <p class="text-lg italic">"Working with Airin over the last few months has been great. Her passion and effort to elevate work at hand have been inspiring!"</p>
+        <p class="text-sm mt-4 font-semibold">- Tania Bilani, Global Marketing Director | Kitopi</p>
+      </div>
+      <div class="recommendation-slide w-full text-center px-12 opacity-0 absolute transition-all duration-700 ease-in-out">
+        <p class="text-lg italic">"Airin consistently took full ownership of her marketing projects, always ensuring meticulous execution with a creative touch."</p>
+        <p class="text-sm mt-4 font-semibold">- Imad El Fay, VP, Growth | Kitopi</p>
+      </div>
+      <div class="recommendation-slide w-full text-center px-12 opacity-0 absolute transition-all duration-700 ease-in-out">
+        <p class="text-lg italic">"Airin’s creativity in social media, influencer marketing, and PR has elevated Wild & The Moon UAE to the next level!"</p>
+        <p class="text-sm mt-4 font-semibold">- Lucile Jan Robin, Marketing & Communications Director | Wild & The Moon</p>
+      </div>
+    </div>
+
+    <!-- Right Navigation Button -->
+    <button id="next-recommendation" class="absolute right-4 text-3xl px-4 py-2 bg-gray-800 rounded-full z-10">
+    </button>
+  </div>
+
+</section>
     <!-- Brands -->
-    <section class="w-full bg-customBg text-white py-12 overflow-hidden">
+    <section class="fade-in-section w-full bg-customBg text-white py-12 overflow-hidden">
       <div class="container mx-auto">
         <!-- Section Title -->
         <h2 class="text-center text-4xl font-bold mb-8 font-anton">Brands</h2>
@@ -817,181 +892,135 @@
   
   </main>
 
- <!-- Footer Section -->
-<footer class="bg-customBg shadow mt-8">
-  <div class="container mx-auto p-4 flex flex-wrap justify-between items-center text-gray-400">
-      <!-- All Rights Reserved -->
-      <div class="text-left w-full md:w-auto mb-4 md:mb-0">
-          © 2024 Airin John Portfolio, All Rights Reserved
-      </div>
+  <!-- Footer Section -->
+  <footer class="fade-in-section bg-customBg shadow mt-8">
+    <div class="container mx-auto p-4 flex flex-wrap justify-between items-center text-gray-400">
+        <!-- All Rights Reserved -->
+        <div class="text-left w-full md:w-auto mb-4 md:mb-0">
+            © 2025 Airin John Portfolio, All Rights Reserved
+        </div>
 
-      <!-- Contact Information -->
-      <div class="flex flex-col items-start text-left w-full md:w-auto space-y-4">
-          <h4 class="text-white font-bold mb-2">CONTACT INFORMATION</h4>
-          <!-- Email -->
-          <div>
-              <a href="mailto:elsa.airin@gmail.com" class="text-white underline italic hover:text-accentAj transition">
-                  Email: elsa.airin@gmail.com
-              </a>
-          </div>
-          <!-- Phone -->
-          <div>
-              <a href="tel:+1234567890" class="text-white underline italic hover:text-accentAj transition">
-                  Phone: +971 55 981 3969
-              </a>
-          </div>
-          <!-- LinkedIn -->
-          <div>
-              <a href="https://www.linkedin.com/in/airinjohn" target="_blank" class="text-white underline italic hover:text-accentAj transition">
-                  LinkedIn
-              </a>
-          </div>
-      </div>
-  </div>
-</footer>
+        <!-- Contact Information -->
+        <div class="flex flex-col items-start text-left w-full md:w-auto space-y-4">
+            <h4 class="text-white font-bold mb-2">CONTACT INFORMATION</h4>
+            <!-- Email -->
+            <div>
+                <a href="mailto:elsa.airin@gmail.com" class="text-white underline italic hover:text-accentAj transition">
+                    Email: elsa.airin@gmail.com
+                </a>
+            </div>
+            <!-- Phone -->
+            <div>
+                <a href="tel:+1234567890" class="text-white underline italic hover:text-accentAj transition">
+                    Phone: +971 55 981 3969
+                </a>
+            </div>
+            <!-- LinkedIn -->
+            <div>
+                <a href="https://www.linkedin.com/in/airinjohn" target="_blank" class="text-white underline italic hover:text-accentAj transition">
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+    </div>
+  </footer>
 
 
   <script>
-
-  let timeout;
-  let recommendationIndex = 0;
-  let interval;
-  const timeline = document.getElementById("timeline");
-  const featuredProjects = document.getElementById("featured-projects");
-  const contentWritingSamples = document.getElementById("content-writing-samples");
-  const recommendationsElement = document.getElementById("recommendations")
-  const placeholderText = document.getElementById("placeholder-text");
-  const recommendationsTrigger = document.getElementById("recommendations-trigger");
-  const recommendationsSection = document.getElementById("recommendations");
-  const recommendationContent = document.getElementById("recommendation-content");
-  const progressBar = document.getElementById("progress-bar");
-
-    
-
-
   // Recommendations Data
-  const recommendations = [
-    {
-      text: "Airin and I worked together at Kitopi for more than a year, and I was really impressed by her marketing knowledge, creativity and ownership! In all the projects that she led, she always aimed for perfection in every detail and went above and beyond to make things happen on time successfully. Her ability to track and report the success metrics were also very helpful to help grow the business. Airin is a big team player and very caring person which adds a lot to a team’s dynamics.",
-      author: "- Fabienne Naggear",
-      position: "Senior Brand Mananger | Kitopi"
-    },
-    {
-      text: "Working with Airin over the last few months has been great. Her passion for the role and her constant effort to elevate the work at hand has been inspiring. Airin never let any roadblocks get in her way, instead always had a pro-active problem solving approach to any task to ensure it was completed. I’m positive you’ll do amazing wherever you go next Airin!",
-      author: "- Tania Bilani",
-      position: "Global Marketing Director | Kitopi"
-    },
-    {
-      text: "Airin consistently took full ownership of her marketing projects on big brands such as Chinchin and Kava & Chai, from conception to execution. She has an innate ability to see the bigger picture while ensuring every detail is meticulously managed. Her creativity shines through in every campaign she leads, always finding innovative ways to engage our target audience and elevate our brand. Her ability to think outside the box has resulted in numerous successful campaigns that have significantly contributed to our company's growth.",
-      author: "- Imad El Fay",
-      position: "VP, Growth | Kitopi"
-    },
-    {
-      text: "HAirin is an outstanding marketing leader. Her vast marketing portfolio skills and experience is a game changer to the organization, as she always brings a fresh and creative approach. Her innovative and creative approach, particularly in the areas of social media management, influencer management & marketing, as well as events management and PR, has taken Wild & The Moon UAE to the next level. Her attention to detail is extremely valuable in all aspects of her work, internally within the organization, but also with partners, clients, and other stakeholders. She focuses on delivering customer and service excellence through detailed out-of-the-box strategic thinking. Inspiring, hardworking, risk taker, enthusiastic personality, and always a real team player. It is a pleasure to work with Airin, on a daily basis.",
-      author: "- Lucile Jan Robin",
-      position: "Marketing & Communications Director | Wild & The Moon"
-    },
-  ];
+  // const recommendations = [
+  //   {
+  //     text: "Airin and I worked together at Kitopi for more than a year, and I was really impressed by her marketing knowledge, creativity and ownership! In all the projects that she led, she always aimed for perfection in every detail and went above and beyond to make things happen on time successfully. Her ability to track and report the success metrics were also very helpful to help grow the business. Airin is a big team player and very caring person which adds a lot to a team’s dynamics.",
+  //     author: "- Fabienne Naggear",
+  //     position: "Senior Brand Mananger | Kitopi"
+  //   },
+  //   {
+  //     text: "Working with Airin over the last few months has been great. Her passion for the role and her constant effort to elevate the work at hand has been inspiring. Airin never let any roadblocks get in her way, instead always had a pro-active problem solving approach to any task to ensure it was completed. I’m positive you’ll do amazing wherever you go next Airin!",
+  //     author: "- Tania Bilani",
+  //     position: "Global Marketing Director | Kitopi"
+  //   },
+  //   {
+  //     text: "Airin consistently took full ownership of her marketing projects on big brands such as Chinchin and Kava & Chai, from conception to execution. She has an innate ability to see the bigger picture while ensuring every detail is meticulously managed. Her creativity shines through in every campaign she leads, always finding innovative ways to engage our target audience and elevate our brand. Her ability to think outside the box has resulted in numerous successful campaigns that have significantly contributed to our company's growth.",
+  //     author: "- Imad El Fay",
+  //     position: "VP, Growth | Kitopi"
+  //   },
+  //   {
+  //     text: "HAirin is an outstanding marketing leader. Her vast marketing portfolio skills and experience is a game changer to the organization, as she always brings a fresh and creative approach. Her innovative and creative approach, particularly in the areas of social media management, influencer management & marketing, as well as events management and PR, has taken Wild & The Moon UAE to the next level. Her attention to detail is extremely valuable in all aspects of her work, internally within the organization, but also with partners, clients, and other stakeholders. She focuses on delivering customer and service excellence through detailed out-of-the-box strategic thinking. Inspiring, hardworking, risk taker, enthusiastic personality, and always a real team player. It is a pleasure to work with Airin, on a daily basis.",
+  //     author: "- Lucile Jan Robin",
+  //     position: "Marketing & Communications Director | Wild & The Moon"
+  //   },
+  // ];
 
-    function fadeInTimeline() {
-      clearTimeout(timeout);
-      placeholderText.classList.add("hidden");
-      timeline.classList.remove("opacity-0");
-      timeline.classList.add("opacity-100");
-    }
+    // Slow fade in section
+    document.addEventListener("DOMContentLoaded", function () {
+      const sections = document.querySelectorAll(".fade-in-section");
 
-    function fadeOutTimeline() {
-        timeline.classList.remove("opacity-100");
-        timeline.classList.add("opacity-0");
-        placeholderText.classList.remove("hidden");
-    }
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            } else {
+              entry.target.classList.remove("visible");
+            }
+          });
+        },
+        {
+          threshold: 0.2, // Trigger when 20% of the element is visible
+        }
+      );
 
-
-    function fadeInFeaturedProjects(){
-      // clearTimeout(timeout);
-      placeholderText.classList.add("hidden");
-      featuredProjects.classList.remove("opacity-0");
-      featuredProjects.classList.add("opacity-100");
-    }
-
-    function fadeOutFeaturedProjects(){
-        featuredProjects.classList.remove("opacity-100");
-        featuredProjects.classList.add("opacity-0");
-        placeholderText.classList.remove("hidden");
-    }
-
-    function fadeInContentWritingSamples(){
-      clearTimeout(timeout);
-      placeholderText.classList.add("hidden");
-      contentWritingSamples.classList.remove("opacity-0");
-      contentWritingSamples.classList.add("opacity-100");
-    }
-    
-    function fadeOutContentWritingSamples(){
-        contentWritingSamples.classList.remove("opacity-100");
-        contentWritingSamples.classList.add("opacity-0");
-        placeholderText.classList.remove("hidden");
-    }
-
-    function fadeInRecommendations(){
-      clearTimeout(timeout);
-      placeholderText.classList.add("hidden");
-      recommendationsElement.classList.remove("opacity-0");
-      recommendationsElement.classList.add("opacity-100");
-    }
-
-    function fadeOutRecommendations(){
-        recommendationsElement.classList.remove("opacity-100");
-        recommendationsElement.classList.add("opacity-0");
-        placeholderText.classList.remove("hidden");
-    }
-
-
-    // Function to display the next recommendation
-    const showNextRecommendation = () => {
-      const { text, author, position } = recommendations[recommendationIndex];
-      recommendationContent.innerHTML = `
-        <p class="text-lg text-white font-light italic">"${text}"</p>
-        <hr class="w-1/3 mx-auto border-white">
-        <p class="text-sm text-white italic">${author}, ${position}</p>
-      `;
-      progressBar.style.width = "100%"; // Fill progress bar
-      recommendationIndex = (recommendationIndex + 1) % recommendations.length; // Cycle through recommendations
-
-      // Reset progress bar after 8 seconds
-      setTimeout(() => {
-        progressBar.style.width = "0%";
-      }, 3000);
-    };
-
-    // Show Recommendations on Hover
-    recommendationsTrigger.addEventListener("mouseover", () => {
-      recommendationsSection.classList.remove("opacity-0"); // Show recommendations
-      placeholderText.classList.add("hidden");
-      showNextRecommendation(); // Show the first recommendation
-      interval = setInterval(() => {
-        showNextRecommendation();
-      }, 5000); // Change recommendation every 5 seconds
+      sections.forEach((section) => {
+        observer.observe(section);
+      });
     });
 
-    // Hide Recommendations on Mouse Out
-    recommendationsTrigger.addEventListener("mouseout", () => {
-      recommendationsSection.classList.add("opacity-0"); // Hide recommendations
-      placeholderText.classList.remove("hidden");
-      clearInterval(interval); // Stop cycling recommendations
-      progressBar.style.width = "0%"; // Reset progress bar
-    });
+    document.addEventListener("DOMContentLoaded", function () {
+      const slides = document.querySelectorAll(".recommendation-slide");
+      let currentIndex = 0;
+      let autoSlideInterval;
 
-  //   document.addEventListener("DOMContentLoaded", () => {
-  //   if (window.innerWidth < 768) {
-  //     const links = document.querySelectorAll('.nav-link');
-  //     links.forEach(link => {
-  //       // Remove the hover triggers
-  //       link.removeAttribute('onmouseenter');
-  //       link.removeAttribute('onmouseleave');
-  //     });
-  //   }
-  // });
+      function updateCarousel() {
+        slides.forEach((slide, index) => {
+          if (index === currentIndex) {
+            slide.classList.add("opacity-100");
+            slide.classList.remove("opacity-0", "absolute");
+          } else {
+            slide.classList.add("opacity-0", "absolute");
+            slide.classList.remove("opacity-100");
+          }
+        });
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateCarousel();
+      resetAutoSlide();
+    }
+
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      updateCarousel();
+      resetAutoSlide();
+    }
+
+    function startAutoSlide() {
+      autoSlideInterval = setInterval(nextSlide, 5000); // Auto-slide every 5 seconds
+    }
+
+    function resetAutoSlide() {
+      clearInterval(autoSlideInterval);
+      startAutoSlide();
+    }
+
+    document.getElementById("next-recommendation").addEventListener("click", nextSlide);
+    document.getElementById("prev-recommendation").addEventListener("click", prevSlide);
+
+    updateCarousel();
+    startAutoSlide();
+  });
+
+
   </script>
   <script type="module">
     import { getApps } from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js';

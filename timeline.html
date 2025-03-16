@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timeline</title>
+  <style>
+    /* General styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    .timeline-container {
+      position: relative;
+      width: 80%;
+      margin: 50px auto;
+      height: 100vh;
+    }
+    .timeline-line {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 2px;
+      height: 100%;
+      background-color: #ccc;
+      transform: translateX(-50%);
+    }
+    .timeline-year {
+      position: absolute;
+      left: 52%; /* Move closer to the center line */
+      transform: translateX(-50%);
+      font-size: 14px;
+      color: #666;
+    }
+    .timeline-year:nth-child(1) { top: 10%; } /* 2024 */
+    .timeline-year:nth-child(2) { top: 14%; } /* 2023 */
+    .timeline-year:nth-child(3) { top: 28%; } /* 2022 */
+    .timeline-year:nth-child(4) { top: 42%; } /* 2021 */
+    .timeline-year:nth-child(5) { top: 56%; } /* 2020 */
+    .timeline-year:nth-child(6) { top: 70%; } /* 2019 */
+    .timeline-year:nth-child(7) { top: 84%; } /* 2017 */
+
+    /* Tiles */
+    .timeline-tile {
+      position: absolute;
+      width: 250px;
+      padding: 10px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+    .timeline-tile:hover {
+      transform: scale(1.05);
+    }
+    .timeline-tile h3 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .timeline-tile p {
+      margin: 5px 0 0;
+      font-size: 14px;
+      color: #555;
+    }
+
+    /* Tile positions and sizes */
+    .tile-1 { /* Fitze (2017-2019) */
+      top: 70%; /* Position based on year range */
+      left: 35%;
+      height: 15%; /* Duration-specific size */
+    }
+    .tile-2 { /* Al Tamimi (2019-2020) */
+      top: 56%;
+      left: 55%; /* Alternate sides */
+      height: 10%;
+    }
+    .tile-3 { /* Letswork (2020 - Short block) */
+      top: 50%;
+      left: 35%;
+      height: 5%;
+    }
+    .tile-4 { /* Wild & The Moon (2020-2023) */
+      top: 28%;
+      left: 55%;
+      height: 22%; /* Longer duration */
+    }
+    .tile-5 { /* Kitopi LLC (2023-Present) */
+      top: 14%;
+      left: 35%;
+      height: 10%;
+    }
+  </style>
+</head>
+<body>
+  <div class="timeline-container">
+    <!-- Timeline Line -->
+    <div class="timeline-line"></div>
+
+    <!-- Years -->
+    <div class="timeline-year">2024</div>
+    <div class="timeline-year">2023</div>
+    <div class="timeline-year">2022</div>
+    <div class="timeline-year">2021</div>
+    <div class="timeline-year">2020</div>
+    <div class="timeline-year">2019</div>
+    <div class="timeline-year">2017</div>
+
+
+    <!-- Timeline Tiles -->
+    <!-- Job 1 -->
+    <div class="timeline-tile tile-1">
+      <h3>Events Intern</h3>
+      <p>Fitze</p>
+      <p>2017 - 2019</p>
+    </div>
+
+    <!-- Job 2 -->
+    <div class="timeline-tile tile-2">
+      <h3>Management Trainee</h3>
+      <p>Al Tamimi & Company</p>
+      <p>2019 - 2020</p>
+    </div>
+
+    <!-- Job 3 -->
+    <div class="timeline-tile tile-3">
+      <h3>Community Manager</h3>
+      <p>Letswork</p>
+      <p>2020</p>
+    </div>
+
+    <!-- Job 4 -->
+    <div class="timeline-tile tile-4">
+      <h3>Brand & Communications Manager</h3>
+      <p>Wild & The Moon</p>
+      <p>2020 - 2023</p>
+    </div>
+
+    <!-- Job 5 -->
+    <div class="timeline-tile tile-5">
+      <h3>Brand Marketing Manager</h3>
+      <p>Kitopi LLC</p>
+      <p>2023 - Present</p>
+    </div>
+  </div>
+</body>
+</html>
+
