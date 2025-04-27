@@ -292,8 +292,11 @@
         </div>
       </div>
     </div>
-    <div class="w-full md:w-2/3 p-6 text-gray-700 bg-gray-100 rounded-lg mt-6" id="experience-details">
-      Click on a job to see details here.
+    <div class="w-full md:w-2/3 mt-6 overflow-hidden rounded-lg" id="experience-details-container">
+      <div class="h-2" id="experience-details-header"></div>
+      <div class="p-6 text-white" id="experience-details">
+        Click on a job to see details here.
+      </div>
     </div>
   </section>
 
@@ -378,17 +381,37 @@
     };
 
     // Add click event listeners to timeline items
+    const colorMap = {
+      'kitopi': { bg: '#1a1326', header: '#9333ea' },
+      'wild': { bg: '#1e1018', header: '#ec4899' },
+      'letswork': { bg: '#0e1f14', header: '#22c55e' },
+      'tamimi': { bg: '#1f1a0c', header: '#eab308' },
+      'fitze': { bg: '#0e1726', header: '#3b82f6' }
+    };
+
     document.querySelectorAll(".timeline-item").forEach(item => {
       item.addEventListener("click", () => {
         const key = item.getAttribute("data-key");
         const detailsElement = document.getElementById("experience-details");
-
+        const detailsContainer = document.getElementById("experience-details-container");
+        const detailsHeader = document.getElementById("experience-details-header");
+        
         // Update details content
         detailsElement.innerHTML = experienceDetails[key];
+        
+        // Update styling
+        detailsElement.style.backgroundColor = colorMap[key].bg;
+        detailsHeader.style.backgroundColor = colorMap[key].header;
+        
+        // Add transition effect
+        detailsContainer.style.opacity = '0';
+        setTimeout(() => {
+          detailsContainer.style.opacity = '1';
+        }, 50);
 
         // Scroll to details section on mobile
         if (window.innerWidth <= 768) {
-          detailsElement.scrollIntoView({ behavior: 'smooth' });
+          detailsContainer.scrollIntoView({ behavior: 'smooth' });
         }
       });
     });
