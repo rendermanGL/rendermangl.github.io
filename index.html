@@ -629,50 +629,54 @@
 
 
     <!-- Recommendations Section -->
-<section id="recommendations" class="fade-in-section w-full h-screen bg-customBg text-white flex flex-col items-center justify-center relative">
-  <!-- Heading at the Top -->
-  <h2 class="text-4xl font-bold mb-8">Recommendations</h2>
-  <!-- Carousel Wrapper -->
-  <div class="relative w-3/4 h-3/5 flex items-center justify-center overflow-hidden">
-      <!-- Left Navigation Button -->
-      <button id="prev-recommendation" class="absolute left-4 text-3xl px-4 py-2 bg-gray-800 rounded-full z-10">
-          <span class="sr-only">Previous</span>
-          &larr;
-      </button>
-      <!-- Slider Container -->
-      <div id="recommendation-slider" class="w-full flex">
-          <!-- Each Recommendation Slide -->
-          <div class="recommendation-slide min-w-full px-12 text-center">
-              <p class="text-lg italic">"Airin and I worked together at Kitopi for more than a year, and I was really impressed by her marketing knowledge, creativity, and ownership!"</p>
-              <p class="text-sm mt-4 font-semibold">- Fabienne Naggear, Senior Brand Manager | Kitopi</p>
-          </div>
-          <div class="recommendation-slide min-w-full px-12 text-center">
-              <p class="text-lg italic">"Working with Airin over the last few months has been great. Her passion and effort to elevate work at hand have been inspiring!"</p>
-              <p class="text-sm mt-4 font-semibold">- Tania Bilani, Global Marketing Director | Kitopi</p>
-          </div>
-          <div class="recommendation-slide min-w-full px-12 text-center">
-              <p class="text-lg italic">"Airin consistently took full ownership of her marketing projects, always ensuring meticulous execution with a creative touch."</p>
-              <p class="text-sm mt-4 font-semibold">- Imad El Fay, VP, Growth | Kitopi</p>
-          </div>
-          <div class="recommendation-slide min-w-full px-12 text-center">
-              <p class="text-lg italic">"Airin's creativity in social media, influencer marketing, and PR has elevated Wild & The Moon UAE to the next level!"</p>
-              <p class="text-sm mt-4 font-semibold">- Lucile Jan Robin, Marketing & Communications Director | Wild & The Moon</p>
-          </div>
-      </div>
-      <!-- Right Navigation Button -->
-      <button id="next-recommendation" class="absolute right-4 text-3xl px-4 py-2 bg-gray-800 rounded-full z-10">
-          <span class="sr-only">Next</span>
-          &rarr;
-      </button>
-
-      <!-- Indicators -->
-      <div class="absolute bottom-4 flex space-x-2">
-          <div class="indicator w-3 h-3 rounded-full bg-white opacity-50"></div>
-          <div class="indicator w-3 h-3 rounded-full bg-white opacity-50"></div>
-          <div class="indicator w-3 h-3 rounded-full bg-white opacity-50"></div>
-          <div class="indicator w-3 h-3 rounded-full bg-white opacity-50"></div>
-      </div>
-  </div>
+<section id="recommendations" class="fade-in-section w-full py-20 bg-customBg text-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold mb-12 text-center">Recommendations</h2>
+        
+        <!-- Recommendations Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <!-- Each recommendation is in a card -->
+            <div class="recommendation-card bg-gray-800 p-8 rounded-lg opacity-0 transition-all duration-500">
+                <p class="text-lg italic mb-4">"Airin and I worked together at Kitopi for more than a year, and I was really impressed by her marketing knowledge, creativity, and ownership!"</p>
+                <p class="text-sm font-semibold">- Fabienne Naggear</p>
+                <p class="text-sm text-gray-400">Senior Brand Manager | Kitopi</p>
+            </div>
+            
+            <div class="recommendation-card bg-gray-800 p-8 rounded-lg opacity-0 transition-all duration-500">
+                <p class="text-lg italic mb-4">"Working with Airin over the last few months has been great. Her passion and effort to elevate work at hand have been inspiring!"</p>
+                <p class="text-sm font-semibold">- Tania Bilani</p>
+                <p class="text-sm text-gray-400">Global Marketing Director | Kitopi</p>
+            </div>
+            
+            <div class="recommendation-card bg-gray-800 p-8 rounded-lg opacity-0 transition-all duration-500">
+                <p class="text-lg italic mb-4">"Airin consistently took full ownership of her marketing projects, always ensuring meticulous execution with a creative touch."</p>
+                <p class="text-sm font-semibold">- Imad El Fay</p>
+                <p class="text-sm text-gray-400">VP, Growth | Kitopi</p>
+            </div>
+            
+            <div class="recommendation-card bg-gray-800 p-8 rounded-lg opacity-0 transition-all duration-500">
+                <p class="text-lg italic mb-4">"Airin's creativity in social media, influencer marketing, and PR has elevated Wild & The Moon UAE to the next level!"</p>
+                <p class="text-sm font-semibold">- Lucile Jan Robin</p>
+                <p class="text-sm text-gray-400">Marketing & Communications Director | Wild & The Moon</p>
+            </div>
+        </div>
+        
+        <!-- Navigation Arrows -->
+        <div class="flex justify-center items-center space-x-4">
+            <button id="prev-recommendation" class="text-3xl px-6 py-2 bg-gray-800 hover:bg-gray-700 rounded-full transition-colors">
+                ←
+            </button>
+            <div class="flex space-x-2">
+                <div class="recommendation-dot w-3 h-3 rounded-full bg-white opacity-50 cursor-pointer"></div>
+                <div class="recommendation-dot w-3 h-3 rounded-full bg-white opacity-50 cursor-pointer"></div>
+                <div class="recommendation-dot w-3 h-3 rounded-full bg-white opacity-50 cursor-pointer"></div>
+                <div class="recommendation-dot w-3 h-3 rounded-full bg-white opacity-50 cursor-pointer"></div>
+            </div>
+            <button id="next-recommendation" class="text-3xl px-6 py-2 bg-gray-800 hover:bg-gray-700 rounded-full transition-colors">
+                →
+            </button>
+        </div>
+    </div>
 </section>
 
 
@@ -935,66 +939,68 @@
   <script>
     // Recommendations carousel
     document.addEventListener('DOMContentLoaded', function() {
-      const slider = document.getElementById('recommendation-slider');
-      const slides = document.querySelectorAll('.recommendation-slide');
-      const prevBtn = document.getElementById('prev-recommendation');
-      const nextBtn = document.getElementById('next-recommendation');
-      const dots = document.querySelectorAll('.indicator'); // Corrected selector
-
-      let currentSlide = 0;
-      let autoScrollInterval;
-      const totalSlides = slides.length;
-
-      function updateSlider() {
-        slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-        // Update dots
+        const cards = document.querySelectorAll('.recommendation-card');
+        const prevBtn = document.getElementById('prev-recommendation');
+        const nextBtn = document.getElementById('next-recommendation');
+        const dots = document.querySelectorAll('.recommendation-dot');
+        
+        let currentPage = 0;
+        const cardsPerPage = window.innerWidth >= 768 ? 2 : 1;
+        const totalPages = Math.ceil(cards.length / cardsPerPage);
+        
+        function showCards() {
+            cards.forEach((card, index) => {
+                const startIndex = currentPage * cardsPerPage;
+                const endIndex = startIndex + cardsPerPage;
+                
+                if (index >= startIndex && index < endIndex) {
+                    card.style.display = 'block';
+                    setTimeout(() => card.style.opacity = '1', 50);
+                } else {
+                    card.style.opacity = '0';
+                    setTimeout(() => card.style.display = 'none', 500);
+                }
+            });
+            
+            // Update dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('opacity-100', index === currentPage);
+                dot.classList.toggle('opacity-50', index !== currentPage);
+            });
+        }
+        
+        function nextPage() {
+            currentPage = (currentPage + 1) % totalPages;
+            showCards();
+        }
+        
+        function prevPage() {
+            currentPage = (currentPage - 1 + totalPages) % totalPages;
+            showCards();
+        }
+        
+        // Event listeners
+        prevBtn.addEventListener('click', prevPage);
+        nextBtn.addEventListener('click', nextPage);
+        
         dots.forEach((dot, index) => {
-          dot.classList.toggle('opacity-100', index === currentSlide);
-          dot.classList.toggle('opacity-50', index !== currentSlide);
+            dot.addEventListener('click', () => {
+                currentPage = index;
+                showCards();
+            });
         });
-      }
-
-      function nextSlide() {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        updateSlider();
-      }
-
-      function prevSlide() {
-        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-        updateSlider();
-      }
-
-      // Auto scroll
-      function startAutoScroll() {
-        autoScrollInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
-      }
-
-      function resetAutoScroll() {
-        clearInterval(autoScrollInterval);
-        startAutoScroll();
-      }
-
-      // Event listeners
-      prevBtn.addEventListener('click', () => {
-        prevSlide();
-        resetAutoScroll();
-      });
-
-      nextBtn.addEventListener('click', () => {
-        nextSlide();
-        resetAutoScroll();
-      });
-
-      dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-          currentSlide = index;
-          updateSlider();
-          resetAutoScroll();
+        
+        // Show initial cards
+        showCards();
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            const newCardsPerPage = window.innerWidth >= 768 ? 2 : 1;
+            if (newCardsPerPage !== cardsPerPage) {
+                currentPage = 0;
+                showCards();
+            }
         });
-      });
-
-      // Start auto-scroll
-      startAutoScroll();
     });
 
     // Slow fade in section
