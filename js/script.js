@@ -21,8 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
     observer.observe(section);
   });
 
-  // Timeline interaction (only on experience.html)
-  if (window.location.pathname.includes('experience.html')) {
+  // Timeline interaction
+  if (document.querySelector('.timeline-container')) {
     const experienceDetails = {
       "kitopi": `<strong>Brand Marketing Manager | Kitopi LLC | 2023 – Present</strong><br><br>
         Leading strategic marketing activations and data-driven multi-channel campaigns across a $20M brand portfolio in GCC markets...`,
@@ -50,5 +50,32 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
     });
+  }
+
+  // Projects page functionality
+  if (window.location.pathname.includes('projects.html')) {
+    window.showFeaturedSection = function(title) {
+      const imageGrid = document.getElementById("image-grid");
+      imageGrid.classList.add("hidden");
+
+      const featuredHeader = document.getElementById("featured-header");
+      featuredHeader.classList.remove("hidden");
+
+      const projectTitle = document.getElementById("project-title");
+      projectTitle.textContent = title;
+
+      const sections = document.querySelectorAll('[id^="section-"]');
+      sections.forEach((section) => section.classList.add("hidden"));
+
+      if (title === "Strategic Marketing") {
+        document.getElementById("section-strategic-marketing").classList.remove("hidden");
+      } else if (title === "Customer Experience & Community Engagement") {
+        document.getElementById("section-customer-experience").classList.remove("hidden");
+      } else if (title === "Brand Storytelling & Multi-channel Marketing") {
+        document.getElementById("section-brand-storytelling").classList.remove("hidden");
+      } else if (title === "Awards & Recognition") {
+        document.getElementById("section-awards-recognition").classList.remove("hidden");
+      }
+    }
   }
 });
