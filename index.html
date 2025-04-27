@@ -9,23 +9,10 @@
   <link rel="stylesheet" href="./build.css">
   <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
   <style>
-    .no-scrollbar {
-      -ms-overflow-style: none; /* Internet Explorer 10+ */
-      scrollbar-width: none; /* Firefox */
-    }
-
-    .no-scrollbar::-webkit-scrollbar {
-      display: none; /* Chrome, Safari, and Opera */
-    }
-
     /* Auto-scrolling animation */
     @keyframes scroll {
-      0% {
-        transform: translateX(0%);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
     }
 
     #brands-carousel {
@@ -34,270 +21,23 @@
       animation: scroll 20s linear infinite; 
     }
 
-    /* Ensure no scrollbar */
-    .no-scrollbar {
-      -ms-overflow-style: none; /* Internet Explorer 10+ */ 
-      scrollbar-width: none; /* Firefox */
-    }
-
-    .no-scrollbar::-webkit-scrollbar {
-      display: none; /* Chrome, Safari, Opera */
-    }
-
-     /* Timeline container */
-     .timeline-container {
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-      width: 100%;
-      max-width: 800px;
-      margin: 50px auto;
-      padding: 20px 0;
-    }
-
-    /* The vertical timeline line */
-    .timeline-line {
-      position: absolute;
-      left: 50%;
-      width: 4px;
-      height: 100%;
-      background: #444444; /* Gray accent */
-      transform: translateX(-50%);
-    }
-
-    /* Timeline items */
-    .timeline-item {
-      display: flex;
-      width: 100%;
-      margin: 30px 0;
-      cursor: pointer;
-      position: relative;
-      transition: transform 0.3s ease;
-    }
-
-    .timeline-item:hover {
-      transform: translateY(-5px);
-    }
-
-    /* Alternate sides */
-    .timeline-item:nth-child(odd) {
-      flex-direction: row-reverse;
-      text-align: right;
-    }
-
-    .timeline-item:nth-child(even) {
-      flex-direction: row;
-      text-align: left;
-    }
-
-    /* Timeline cards */
-    .timeline-item .card {
-      border-radius: 8px;
-      padding: 20px;
-      width: 300px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-      position: relative;
-    }
-
-    /* Year label */
-    .timeline-item .year {
-      font-weight: bold;
-      font-size: 0.8rem;
-      color: #ffffff;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 4px 10px;
-      border-radius: 4px;
-      margin-bottom: 8px;
-      display: inline-block;
-    }
-
-    /* Timeline dots */
-    .timeline-item:before {
-      content: '';
-      position: absolute;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background-color: #121212;
-      border: 3px solid #444444;
-      top: 25px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 1;
-      transition: background-color 0.3s ease;
-    }
-
-    .timeline-item:hover:before {
-      background-color: #ffffff;
-    }
-
-    /* Timeline item styling */
-    .timeline-item[data-key="kitopi"] .card {
-      background: #1a1326; /* Darker purple */
-      border-left: 4px solid #9333ea;
-    }
-
-    .timeline-item[data-key="wild"] .card {
-      background: #1e1018; /* Darker pink */
-      border-left: 4px solid #ec4899;
-    }
-
-    .timeline-item[data-key="letswork"] .card {
-      background: #0e1f14; /* Darker green */
-      border-left: 4px solid #22c55e;
-    }
-
-    .timeline-item[data-key="tamimi"] .card {
-      background: #1f1a0c; /* Darker yellow */
-      border-left: 4px solid #eab308;
-    }
-
-    .timeline-item[data-key="fitze"] .card {
-      background: #0e1726; /* Darker blue */
-      border-left: 4px solid #3b82f6;
-    }
-
-    /* Fix border position for right-side items */
-    .timeline-item:nth-child(odd) .card {
-      border-left: none;
-      border-right: 4px solid;
-    }
-
-    .timeline-item[data-key="kitopi"]:nth-child(odd) .card {
-      border-right-color: #9333ea;
-    }
-
-    .timeline-item[data-key="wild"]:nth-child(odd) .card {
-      border-right-color: #ec4899;
-    }
-
-    .timeline-item[data-key="letswork"]:nth-child(odd) .card {
-      border-right-color: #22c55e;
-    }
-
-    .timeline-item[data-key="tamimi"]:nth-child(odd) .card {
-      border-right-color: #eab308;
-    }
-
-    .timeline-item[data-key="fitze"]:nth-child(odd) .card {
-      border-right-color: #3b82f6;
-    }
-
-    /* Spacing between timeline items and line */
-    .timeline-item:nth-child(odd) .card {
-      margin-right: 40px;
-    }
-
-    .timeline-item:nth-child(even) .card {
-      margin-left: 40px;
-    }
-
-    /* Animation */
-    .timeline-container {
-      opacity: 0;
-      animation: fadeIn 1s ease forwards;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .timeline-item {
+     .fade-in-section {
       opacity: 0;
       transform: translateY(20px);
-      animation: slideIn 0.6s ease forwards;
-      animation-delay: calc(var(--item-index) * 0.2s);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     }
 
-    @keyframes slideIn {
-      from { 
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to { 
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .fade-in-section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      .timeline-line {
-        left: 20px;
-      }
-
-      .timeline-item:nth-child(odd),
-      .timeline-item:nth-child(even) {
-        flex-direction: row;
-        text-align: left;
-        padding-left: 45px;
-      }
-
-      .timeline-item:before {
-        left: 20px;
-      }
-
-      .timeline-item .card {
-        width: calc(100% - 60px);
-        margin-left: 40px !important;
-        margin-right: 0 !important;
-      }
-
-      .timeline-item:nth-child(odd) .card {
-        border-right: none;
-        border-left: 4px solid;
-      }
-
-      .timeline-item[data-key="kitopi"]:nth-child(odd) .card {
-        border-left-color: #9333ea;
-      }
-
-      .timeline-item[data-key="wild"]:nth-child(odd) .card {
-        border-left-color: #ec4899;
-      }
-
-      .timeline-item[data-key="letswork"]:nth-child(odd) .card {
-        border-left-color: #22c55e;
-      }
-
-      .timeline-item[data-key="tamimi"]:nth-child(odd) .card {
-        border-left-color: #eab308;
-      }
-
-      .timeline-item[data-key="fitze"]:nth-child(odd) .card {
-        border-left-color: #3b82f6;
-      }
+    .section-dark {
+      background: #292929;
     }
 
-     /* Hide left side (timeline & hover sections) on mobile and center titles. */
-    @media (max-width: 767px) {
-      /* Hide the entire left side. */
-      #left-side {
-        display: none;
-      }
-      /* Make the right side full width, center text, remove right padding. */
-      #right-side {
-        width: 100%;
-        padding-right: 0;
-        align-items: center !important; /* center the items horizontally */
-      }
-      /* Center the text for each link. */
-      #right-side ul {
-        text-align: center;
-      }
-      /* Remove hover events on mobile by disabling pointer events on them
-        OR you can remove them via a quick JS snippet (below). */
-      .nav-link {
-        /* If you'd like, you can override the hover style so no visual change on mobile:
-          but typically mobile doesn't trigger :hover anyway.
-          We'll set hover text to none for clarity. */
-        transition: none;
-      }
-      .nav-link:hover {
-        color: #fff; /* no hover color change on mobile */
-      }
-      /* We can also remove the onmouseenter / onmouseleave via JS if you want. */
+    .content-padding {
+      padding: 6px;
     }
 
 
