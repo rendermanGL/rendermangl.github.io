@@ -634,47 +634,31 @@
         <h2 class="text-4xl font-bold mb-12 text-center">Recommendations</h2>
         
         <!-- Recommendations Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <!-- Each recommendation is in a card -->
-            <div class="recommendation-card bg-gray-800 p-8 rounded-lg opacity-0 transition-all duration-500">
-                <p class="text-lg italic mb-4">"Airin and I worked together at Kitopi for more than a year, and I was really impressed by her marketing knowledge, creativity, and ownership!"</p>
+            <div class="bg-gray-800 p-6 rounded-lg">
+                <p class="text-sm italic mb-4">"Airin and I worked together at Kitopi for more than a year, and I was really impressed by her marketing knowledge, creativity, and ownership!"</p>
                 <p class="text-sm font-semibold">- Fabienne Naggear</p>
                 <p class="text-sm text-gray-400">Senior Brand Manager | Kitopi</p>
             </div>
             
-            <div class="recommendation-card bg-gray-800 p-8 rounded-lg opacity-0 transition-all duration-500">
-                <p class="text-lg italic mb-4">"Working with Airin over the last few months has been great. Her passion and effort to elevate work at hand have been inspiring!"</p>
+            <div class="bg-gray-800 p-6 rounded-lg">
+                <p class="text-sm italic mb-4">"Working with Airin over the last few months has been great. Her passion and effort to elevate work at hand have been inspiring!"</p>
                 <p class="text-sm font-semibold">- Tania Bilani</p>
                 <p class="text-sm text-gray-400">Global Marketing Director | Kitopi</p>
             </div>
             
-            <div class="recommendation-card bg-gray-800 p-8 rounded-lg opacity-0 transition-all duration-500">
-                <p class="text-lg italic mb-4">"Airin consistently took full ownership of her marketing projects, always ensuring meticulous execution with a creative touch."</p>
+            <div class="bg-gray-800 p-6 rounded-lg">
+                <p class="text-sm italic mb-4">"Airin consistently took full ownership of her marketing projects, always ensuring meticulous execution with a creative touch."</p>
                 <p class="text-sm font-semibold">- Imad El Fay</p>
                 <p class="text-sm text-gray-400">VP, Growth | Kitopi</p>
             </div>
             
-            <div class="recommendation-card bg-gray-800 p-8 rounded-lg opacity-0 transition-all duration-500">
-                <p class="text-lg italic mb-4">"Airin's creativity in social media, influencer marketing, and PR has elevated Wild & The Moon UAE to the next level!"</p>
+            <div class="bg-gray-800 p-6 rounded-lg">
+                <p class="text-sm italic mb-4">"Airin's creativity in social media, influencer marketing, and PR has elevated Wild & The Moon UAE to the next level!"</p>
                 <p class="text-sm font-semibold">- Lucile Jan Robin</p>
                 <p class="text-sm text-gray-400">Marketing & Communications Director | Wild & The Moon</p>
             </div>
-        </div>
-        
-        <!-- Navigation Arrows -->
-        <div class="flex justify-center items-center space-x-4">
-            <button id="prev-recommendation" class="text-3xl px-6 py-2 bg-gray-800 hover:bg-gray-700 rounded-full transition-colors">
-                ←
-            </button>
-            <div class="flex space-x-2">
-                <div class="recommendation-dot w-3 h-3 rounded-full bg-white opacity-50 cursor-pointer"></div>
-                <div class="recommendation-dot w-3 h-3 rounded-full bg-white opacity-50 cursor-pointer"></div>
-                <div class="recommendation-dot w-3 h-3 rounded-full bg-white opacity-50 cursor-pointer"></div>
-                <div class="recommendation-dot w-3 h-3 rounded-full bg-white opacity-50 cursor-pointer"></div>
-            </div>
-            <button id="next-recommendation" class="text-3xl px-6 py-2 bg-gray-800 hover:bg-gray-700 rounded-full transition-colors">
-                →
-            </button>
         </div>
     </div>
 </section>
@@ -937,71 +921,7 @@
 
 
   <script>
-    // Recommendations carousel
-    document.addEventListener('DOMContentLoaded', function() {
-        const cards = document.querySelectorAll('.recommendation-card');
-        const prevBtn = document.getElementById('prev-recommendation');
-        const nextBtn = document.getElementById('next-recommendation');
-        const dots = document.querySelectorAll('.recommendation-dot');
-        
-        let currentPage = 0;
-        const cardsPerPage = window.innerWidth >= 768 ? 2 : 1;
-        const totalPages = Math.ceil(cards.length / cardsPerPage);
-        
-        function showCards() {
-            cards.forEach((card, index) => {
-                const startIndex = currentPage * cardsPerPage;
-                const endIndex = startIndex + cardsPerPage;
-                
-                if (index >= startIndex && index < endIndex) {
-                    card.style.display = 'block';
-                    setTimeout(() => card.style.opacity = '1', 50);
-                } else {
-                    card.style.opacity = '0';
-                    setTimeout(() => card.style.display = 'none', 500);
-                }
-            });
-            
-            // Update dots
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('opacity-100', index === currentPage);
-                dot.classList.toggle('opacity-50', index !== currentPage);
-            });
-        }
-        
-        function nextPage() {
-            currentPage = (currentPage + 1) % totalPages;
-            showCards();
-        }
-        
-        function prevPage() {
-            currentPage = (currentPage - 1 + totalPages) % totalPages;
-            showCards();
-        }
-        
-        // Event listeners
-        prevBtn.addEventListener('click', prevPage);
-        nextBtn.addEventListener('click', nextPage);
-        
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                currentPage = index;
-                showCards();
-            });
-        });
-        
-        // Show initial cards
-        showCards();
-        
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            const newCardsPerPage = window.innerWidth >= 768 ? 2 : 1;
-            if (newCardsPerPage !== cardsPerPage) {
-                currentPage = 0;
-                showCards();
-            }
-        });
-    });
+    // Other JavaScript code remains...
 
     // Slow fade in section
     document.addEventListener("DOMContentLoaded", function () {
