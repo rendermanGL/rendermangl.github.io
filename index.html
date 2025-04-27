@@ -5,8 +5,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Welcome to Airin John's portfolio. Explore diverse projects, including content writing, press releases, brand storytelling, and strategic marketing campaigns. Discover the creativity and precision behind each piece." />
   <title>Airin John</title>
-  <link rel="stylesheet" href="css/style.css">
+  <!-- <link rel="stylesheet" href="./dist/output.css"> -->
+  <link rel="stylesheet" href="./build.css">
   <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+  <style>
+    /* Auto-scrolling animation */
+    @keyframes scroll {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+
+    #brands-carousel {
+      display: flex;
+      white-space: nowrap;
+      animation: scroll 20s linear infinite; 
+    }
+
+     .fade-in-section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-in-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-dark {
+      background: #292929;
+    }
+
+    .content-padding {
+      padding: 6px;
+    }
+
+
+    .fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .fade-in-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .section-dark {
+    /* background: rgba(18, 18, 18, 0.9); Darker tint for contrast */
+    background: #292929;
+  }
+
+  .content-padding{
+    padding: 6px 6px 6px 6px;
+  }
+
+  </style>
   </head>
 
 <body class="bg-customBg text-white pt-10">
@@ -599,7 +654,9 @@
   </footer>
 
 
-  <script src="js/script.js"></script>
+  <script>
+    // Fade in sections on scroll
+    document.addEventListener("DOMContentLoaded", function () {
       const sections = document.querySelectorAll(".fade-in-section");
 
       const observer = new IntersectionObserver(

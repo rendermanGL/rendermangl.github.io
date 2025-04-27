@@ -5,9 +5,202 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Explore the professional journey of Airin John, featuring diverse work experiences across marketing, brand strategy, and creative campaigns. Discover impactful achievements and a history of delivering measurable results." />
   <title>Work Experiences</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="./build.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+  <style>
+    .timeline-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: auto;
+      padding: 20px 0;
+    }
+
+    .timeline-line {
+      position: absolute;
+      left: 50%;
+      width: 4px;
+      height: 100%;
+      background: #444444;
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      display: flex;
+      width: 100%;
+      margin: 30px 0;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+
+    .timeline-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .timeline-item:nth-child(odd) {
+      flex-direction: row-reverse;
+      text-align: right;
+    }
+
+    .timeline-item:nth-child(even) {
+      flex-direction: row;
+      text-align: left;
+    }
+
+    .timeline-item .card {
+      border-radius: 8px;
+      padding: 20px;
+      width: 300px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      position: relative;
+    }
+
+    .timeline-item .year {
+      font-weight: bold;
+      font-size: 0.8rem;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+
+    .timeline-item:before {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background-color: #121212;
+      border: 3px solid #444444;
+      top: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      transition: background-color 0.3s ease;
+    }
+
+    .timeline-item:hover:before {
+      background-color: #ffffff;
+    }
+
+    .timeline-item[data-key="kitopi"] .card {
+      background: #1a1326;
+      border-left: 4px solid #9333ea;
+    }
+
+    .timeline-item[data-key="wild"] .card {
+      background: #1e1018;
+      border-left: 4px solid #ec4899;
+    }
+
+    .timeline-item[data-key="letswork"] .card {
+      background: #0e1f14;
+      border-left: 4px solid #22c55e;
+    }
+
+    .timeline-item[data-key="tamimi"] .card {
+      background: #1f1a0c;
+      border-left: 4px solid #eab308;
+    }
+
+    .timeline-item[data-key="fitze"] .card {
+      background: #0e1726;
+      border-left: 4px solid #3b82f6;
+    }
+
+    .timeline-item:nth-child(odd) .card {
+      border-left: none;
+      border-right: 4px solid;
+    }
+
+    .timeline-item[data-key="kitopi"]:nth-child(odd) .card {
+      border-right-color: #9333ea;
+    }
+
+    .timeline-item[data-key="wild"]:nth-child(odd) .card {
+      border-right-color: #ec4899;
+    }
+
+    .timeline-item[data-key="letswork"]:nth-child(odd) .card {
+      border-right-color: #22c55e;
+    }
+
+    .timeline-item[data-key="tamimi"]:nth-child(odd) .card {
+      border-right-color: #eab308;
+    }
+
+    .timeline-item[data-key="fitze"]:nth-child(odd) .card {
+      border-right-color: #3b82f6;
+    }
+
+    .timeline-item:nth-child(odd) .card {
+      margin-right: 40px;
+    }
+
+    .timeline-item:nth-child(even) .card {
+      margin-left: 40px;
+    }
+
+    #experience-details {
+      transition: all 0.3s ease;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .timeline-line {
+        left: 20px;
+      }
+
+      .timeline-item:nth-child(odd),
+      .timeline-item:nth-child(even) {
+        flex-direction: row;
+        text-align: left;
+        padding-left: 45px;
+      }
+
+      .timeline-item:before {
+        left: 20px;
+      }
+
+      .timeline-item .card {
+        width: calc(100% - 60px);
+        margin-left: 40px !important;
+        margin-right: 0 !important;
+      }
+
+      .timeline-item:nth-child(odd) .card {
+        border-right: none;
+        border-left: 4px solid;
+      }
+
+      .timeline-item[data-key="kitopi"]:nth-child(odd) .card {
+        border-left-color: #9333ea;
+      }
+
+      .timeline-item[data-key="wild"]:nth-child(odd) .card {
+        border-left-color: #ec4899;
+      }
+
+      .timeline-item[data-key="letswork"]:nth-child(odd) .card {
+        border-left-color: #22c55e;
+      }
+
+      .timeline-item[data-key="tamimi"]:nth-child(odd) .card {
+        border-left-color: #eab308;
+      }
+
+      .timeline-item[data-key="fitze"]:nth-child(odd) .card {
+        border-left-color: #3b82f6;
+      }
+    }
+  </style>
 </head>
 <body class="bg-customBg text-white pt-10 min-h-screen">
   <header class="fixed top-0 left-0 w-full z-50 bg-customBg shadow-lg">
@@ -130,7 +323,11 @@
     </div>
   </footer>
 
-  <script src="js/script.js"></script>
+  <script>
+    // Experience details data
+    const experienceDetails = {
+      "kitopi": `
+        <strong>Brand Marketing Manager | Kitopi LLC | 2023 – Present</strong><br><br>
         Leading strategic marketing activations and data-driven multi-channel campaigns across a $20M brand portfolio in GCC markets. Leading high-impact collaborations, optimizing budget efficiency, and aligning marketing efforts with overarching business objectives to deliver measurable results.<br><br>
 
         <strong>Key Achievements:</strong><br>
