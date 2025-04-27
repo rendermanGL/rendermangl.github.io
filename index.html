@@ -915,9 +915,7 @@
 
 
   <script>
-    // Other JavaScript code remains...
-
-    // Slow fade in section
+    // Fade in sections on scroll
     document.addEventListener("DOMContentLoaded", function () {
       const sections = document.querySelectorAll(".fade-in-section");
 
@@ -926,13 +924,12 @@
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               entry.target.classList.add("visible");
-            } else {
-              entry.target.classList.remove("visible");
             }
           });
         },
         {
-          threshold: 0.2, // Trigger when 20% of the element is visible
+          threshold: 0.2,
+          rootMargin: "0px"
         }
       );
 
@@ -940,109 +937,6 @@
         observer.observe(section);
       });
     });
-
-    document.addEventListener("DOMContentLoaded", function() {
-    const slider = document.getElementById("recommendation-slider");
-    const slides = document.querySelectorAll(".recommendation-slide");
-    const indicators = document.querySelectorAll(".indicator");
-    const prevBtn = document.getElementById("prev-recommendation");
-    const nextBtn = document.getElementById("next-recommendation");
-
-    let currentIndex = 0;
-    let autoSlideInterval;
-
-    // Initialize slider
-    function initializeSlider() {
-        // Set initial positions
-        updateSliderPosition();
-        updateIndicators();
-
-        // Start auto sliding
-        startAutoSlide();
-    }
-
-    // Update slider position based on current index
-    function updateSliderPosition() {
-        slider.style.transition = "transform 0.6s ease-in-out";
-        slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-    }
-
-    // Update active indicator
-    function updateIndicators() {
-        indicators.forEach((indicator, index) => {
-            if (index === currentIndex) {
-                indicator.classList.remove("opacity-50");
-                indicator.classList.add("opacity-100");
-            } else {
-                indicator.classList.remove("opacity-100");
-                indicator.classList.add("opacity-50");
-            }
-        });
-    }
-
-    // Next slide function
-    function nextSlide() {
-        currentIndex = (currentIndex + 1) % slides.length;
-        updateSliderPosition();
-        updateIndicators();
-        resetAutoSlide();
-    }
-
-    // Previous slide function
-    function prevSlide() {
-        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        updateSliderPosition();
-        updateIndicators();
-        resetAutoSlide();
-    }
-
-    // Start auto slide
-    function startAutoSlide() {
-        autoSlideInterval = setInterval(nextSlide, 5000); // Auto-slide every 5 seconds
-    }
-
-    // Reset auto slide timer
-    function resetAutoSlide() {
-        clearInterval(autoSlideInterval);
-        startAutoSlide();
-    }
-
-    // Event listeners
-    nextBtn.addEventListener("click", nextSlide);
-    prevBtn.addEventListener("click", prevSlide);
-
-    // Allow clicking on indicators to jump to specific slides
-    indicators.forEach((indicator, index) => {
-        indicator.addEventListener("click", () => {
-            currentIndex = index;
-            updateSliderPosition();
-            updateIndicators();
-            resetAutoSlide();
-        });
-    });
-
-    // Touch support for mobile
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    slider.addEventListener("touchstart", (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-    });
-
-    slider.addEventListener("touchend", (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        if (touchStartX - touchEndX > 50) {
-            nextSlide(); // Swipe left
-        } else if (touchEndX - touchStartX > 50) {
-            prevSlide(); // Swipe right
-        }
-    });
-
-    // Initialize
-    initializeSlider();
-});
-
-
   </script>
 
 </body>
