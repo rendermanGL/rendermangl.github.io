@@ -322,9 +322,7 @@
   }
 
   </style>
-  <!-- Firebase Configuration -->
-  <script type="module" src="./firebase-config.js"></script>
-</head>
+  </head>
 
 <body class="bg-customBg text-white pt-10">
   
@@ -1086,14 +1084,6 @@
 
 
   </script>
-  <script type="module">
-    import { getApps } from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js';
-    import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-analytics.js';
   
-    const apps = getApps();
-    if (apps.length > 0) {
-      const analytics = getAnalytics(apps[0]);
-    }
-  </script>
 </body>
 </html>
