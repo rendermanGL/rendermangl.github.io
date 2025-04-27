@@ -332,7 +332,7 @@
     <div class="border-t border-white-400 w-full"></div>
     <!-- Navigation Menu -->
     <nav class="container mx-auto flex justify-between items-center py-6">
-      <ul class="flex w-full justify-between px-12">
+      <ul class="flex flex-col md:flex-row w-full justify-between px-4 md:px-12 space-y-4 md:space-y-0">
         <!-- ABOUT -->
         <li class="menu-item relative group">
           <div class="overflow-hidden text-left navbar-font">
@@ -508,7 +508,7 @@
     </section>
 
     <!-- Updated Work Experience Section -->
-    <section id="work-experience" class="fade-in-section w-full h-screen bg-customBg text-white items-center justify-center shadow-xl shadow-gray-800">
+    <section id="work-experience" class="fade-in-section w-full min-h-[600px] bg-customBg text-white items-center justify-center shadow-xl shadow-gray-800 py-12">
       <div class="timeline-container text-center">
         <!-- <h2 class="text-4xl font-bold mb-6">Work Experience</h2> -->
         <div class="timeline-line"></div>
@@ -531,15 +531,16 @@
     </section>
 
     <!-- Updated Featured Projects Section -->
-    <section id="featured-projects" class="fade-in-section w-full h-screen bg-customBg text-white flex">
-      <!-- Left Side: Title & Description -->
-      <div class="w-1/2 flex flex-col justify-center">
-        <h2 class="text-4xl font-bold mb-4">Featured Projects</h2>
-        <p class="text-lg">Explore case studies and successful brand activations showcasing multi-channel marketing, digital strategies, and content storytelling.</p>
-      </div>
+    <section id="featured-projects" class="fade-in-section w-full py-16 bg-customBg text-white">
+      <div class="container mx-auto px-4 flex flex-col lg:flex-row gap-8">
+        <!-- Left Side: Title & Description -->
+        <div class="lg:w-1/2 flex flex-col justify-center">
+          <h2 class="text-4xl font-bold mb-4">Featured Projects</h2>
+          <p class="text-lg">Explore case studies and successful brand activations showcasing multi-channel marketing, digital strategies, and content storytelling.</p>
+        </div>
 
-      <!-- Right Side: Image Tiles -->
-      <div class="w-1/2 flex flex-col justify-center">
+        <!-- Right Side: Image Tiles -->
+        <div class="lg:w-1/2 flex flex-col justify-center">
         <div class="grid grid-cols-2 gap-2">
           <!-- Tile 1 -->
           <a href="/projects.html" class="block content-padding">
@@ -596,7 +597,7 @@
       <h2 class="text-4xl font-bold mb-8">Content Writing Samples</h2>
 
       <!-- Image Tiles -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-5xl px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl px-4">
         <!-- Box 1 -->
         <a href="/contentWriting.html" class="relative block w-full h-[300px] py-2">
           <img src="/img/contentWritingSamples/Press Release.jpg" alt="Press Releases"
@@ -634,7 +635,7 @@
         <h2 class="text-4xl font-bold mb-12 text-center">Recommendations</h2>
 
         <!-- Recommendations Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-6xl mx-auto px-4">
             <!-- Each recommendation is in a card -->
             <div class="bg-gray-800 p-8 rounded-lg shadow-lg">
                 <p class="text-base italic mb-4">"Airin and I worked together at Kitopi for more than a year, and I was really impressed by her marketing knowledge, creativity, and ownership!"</p>
