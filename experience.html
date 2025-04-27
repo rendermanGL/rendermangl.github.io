@@ -9,6 +9,26 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
   <style>
+    @media (min-width: 768px) {
+      .timeline-wrapper {
+        transform: translateX(50%);
+        transition: transform 0.5s ease-out;
+      }
+      
+      .timeline-wrapper.active {
+        transform: translateX(0);
+      }
+
+      .details-wrapper {
+        opacity: 0;
+        transition: opacity 0.5s ease-out;
+      }
+
+      .details-wrapper.active {
+        opacity: 1;
+      }
+    }
+
     .timeline-container {
       display: flex;
       flex-direction: column;
@@ -253,49 +273,57 @@
     </div>
   </section>
 
-  <section class="w-full bg-white py-10 flex flex-col items-center">
-    <div class="timeline-container">
-      <div class="timeline-line"></div>
-      <div class="timeline-item" data-key="kitopi">
-        <div class="card">
-          <span class="year">2023 - Present</span>
-          <h3 class="font-bold text-lg">Brand Marketing Manager</h3>
-          <p class="text-sm">Kitopi LLC</p>
+  <section class="w-full bg-white py-10">
+    <div class="container mx-auto px-4 flex flex-col md:flex-row">
+      <div class="timeline-wrapper w-full md:w-1/2 transition-all duration-500" id="timeline-container">
+        <div class="timeline-container">
+          <div class="timeline-line"></div>
+          <div class="timeline-item" data-key="kitopi">
+            <div class="card">
+              <span class="year">2023 - Present</span>
+              <h3 class="font-bold text-lg">Brand Marketing Manager</h3>
+              <p class="text-sm">Kitopi LLC</p>
+            </div>
+          </div>
+          <div class="timeline-item" data-key="wild">
+            <div class="card">
+              <span class="year">2020 - 2023</span>
+              <h3 class="font-bold text-lg">Brand & Communications Manager</h3>
+              <p class="text-sm">Wild & The Moon</p>
+            </div>
+          </div>
+          <div class="timeline-item" data-key="letswork">
+            <div class="card">
+              <span class="year">2020</span>
+              <h3 class="font-bold text-lg">Community Manager</h3>
+              <p class="text-sm">Letswork</p>
+            </div>
+          </div>
+          <div class="timeline-item" data-key="tamimi">
+            <div class="card">
+              <span class="year">2019 - 2020</span>
+              <h3 class="font-bold text-lg">Management Trainee</h3>
+              <p class="text-sm">Al Tamimi & Company</p>
+            </div>
+          </div>
+          <div class="timeline-item" data-key="fitze">
+            <div class="card">
+              <span class="year">2017 - 2019</span>
+              <h3 class="font-bold text-lg">Events Intern</h3>
+              <p class="text-sm">Fitze</p>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="timeline-item" data-key="wild">
-        <div class="card">
-          <span class="year">2020 - 2023</span>
-          <h3 class="font-bold text-lg">Brand & Communications Manager</h3>
-          <p class="text-sm">Wild & The Moon</p>
+      <div class="details-wrapper w-full md:w-1/2 md:pl-8 transition-all duration-500 opacity-0" id="details-container">
+        <div class="sticky top-24">
+          <div class="rounded-lg overflow-hidden">
+            <div class="h-2" id="experience-details-header"></div>
+            <div class="p-6 text-white" id="experience-details">
+              Click on a job to see details here.
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="timeline-item" data-key="letswork">
-        <div class="card">
-          <span class="year">2020</span>
-          <h3 class="font-bold text-lg">Community Manager</h3>
-          <p class="text-sm">Letswork</p>
-        </div>
-      </div>
-      <div class="timeline-item" data-key="tamimi">
-        <div class="card">
-          <span class="year">2019 - 2020</span>
-          <h3 class="font-bold text-lg">Management Trainee</h3>
-          <p class="text-sm">Al Tamimi & Company</p>
-        </div>
-      </div>
-      <div class="timeline-item" data-key="fitze">
-        <div class="card">
-          <span class="year">2017 - 2019</span>
-          <h3 class="font-bold text-lg">Events Intern</h3>
-          <p class="text-sm">Fitze</p>
-        </div>
-      </div>
-    </div>
-    <div class="w-full md:w-2/3 mt-6 overflow-hidden rounded-lg" id="experience-details-container">
-      <div class="h-2" id="experience-details-header"></div>
-      <div class="p-6 text-white" id="experience-details">
-        Click on a job to see details here.
       </div>
     </div>
   </section>
@@ -393,8 +421,9 @@
       item.addEventListener("click", () => {
         const key = item.getAttribute("data-key");
         const detailsElement = document.getElementById("experience-details");
-        const detailsContainer = document.getElementById("experience-details-container");
         const detailsHeader = document.getElementById("experience-details-header");
+        const timelineWrapper = document.getElementById("timeline-container");
+        const detailsWrapper = document.getElementById("details-container");
         
         // Update details content
         detailsElement.innerHTML = experienceDetails[key];
@@ -402,18 +431,34 @@
         // Update styling
         detailsElement.style.backgroundColor = colorMap[key].bg;
         detailsHeader.style.backgroundColor = colorMap[key].header;
-        
-        // Add transition effect
-        detailsContainer.style.opacity = '0';
-        setTimeout(() => {
-          detailsContainer.style.opacity = '1';
-        }, 50);
 
-        // Scroll to details section on mobile
+        // Desktop animations
+        if (window.innerWidth > 768) {
+          timelineWrapper.classList.add('active');
+          setTimeout(() => {
+            detailsWrapper.classList.add('active');
+          }, 300);
+        }
+        
+        // Mobile view
         if (window.innerWidth <= 768) {
-          detailsContainer.scrollIntoView({ behavior: 'smooth' });
+          detailsWrapper.classList.add('active');
+          detailsWrapper.scrollIntoView({ behavior: 'smooth' });
         }
       });
+    });
+
+    // Reset layout when clicking outside timeline
+    document.addEventListener('click', (event) => {
+      if (!event.target.closest('.timeline-container') && window.innerWidth > 768) {
+        const timelineWrapper = document.getElementById("timeline-container");
+        const detailsWrapper = document.getElementById("details-container");
+        
+        detailsWrapper.classList.remove('active');
+        setTimeout(() => {
+          timelineWrapper.classList.remove('active');
+        }, 300);
+      }
     });
   </script>
 </body>
