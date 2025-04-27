@@ -27,25 +27,6 @@
       .details-wrapper.active {
         opacity: 1;
       }
-
-      .details-wrapper {
-        position: fixed;
-        right: 0;
-        top: 0;
-        height: 100vh;
-        padding-top: 6rem;
-      }
-    }
-
-    @media (max-width: 767px) {
-      .timeline-wrapper {
-        transform: none !important;
-      }
-      
-      .details-wrapper {
-        margin-top: 2rem;
-        position: static;
-      }
     }
 
     .timeline-container {
@@ -436,10 +417,9 @@
       'fitze': { bg: '#0e1726', header: '#3b82f6' }
     };
 
-    document.querySelectorAll(".timeline-item, .timeline-item .card").forEach(item => {
-      item.addEventListener("click", (e) => {
-        const timelineItem = item.classList.contains('timeline-item') ? item : item.closest('.timeline-item');
-        const key = timelineItem.getAttribute("data-key");
+    document.querySelectorAll(".timeline-item").forEach(item => {
+      item.addEventListener("click", () => {
+        const key = item.getAttribute("data-key");
         const detailsElement = document.getElementById("experience-details");
         const detailsHeader = document.getElementById("experience-details-header");
         const timelineWrapper = document.getElementById("timeline-container");
